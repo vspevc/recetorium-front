@@ -7,7 +7,7 @@ const themeSizes: DefaultThemeSizes = {
   mainElementVerticalPadding: "30px",
   smallElementPadding: {
     horizontal: "20px",
-    vertical: "12px",
+    vertical: "10px",
   },
   gap: "16px",
 };

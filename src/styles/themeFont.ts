@@ -10,7 +10,7 @@ const themeFont: DefaultThemeFont = {
   smallFontSize: "5",
 
   mainFontWeight: "400",
-  mediumFontWeight: "700",
+  mediumFontWeight: "500",
   boldFontWeight: "900",
 };
 
