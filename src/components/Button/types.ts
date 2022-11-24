@@ -1,6 +1,7 @@
 export interface ButtonProps {
   children: JSX.Element | string;
   action?: () => void;
+  as?: "button" | "a" | "label";
   options?: ButtonOptions;
 }
 
@@ -9,7 +10,6 @@ export interface ButtonStyledProps {
 }
 
 interface ButtonOptions extends ButtonStyledProps {
-  as?: "button" | "a" | "label";
   href?: string;
   htmlFor?: string;
   type?: string;

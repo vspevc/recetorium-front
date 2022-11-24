@@ -4,10 +4,11 @@ import { ButtonProps } from "./types";
 const Button = ({
   children,
   action = () => {},
-  options = { as: "button" },
+  as = "button",
+  options = {},
 }: ButtonProps): JSX.Element => {
   return (
-    <ButtonStyled onClick={action} {...options}>
+    <ButtonStyled onClick={action} as={as} {...options}>
       {children}
     </ButtonStyled>
   );

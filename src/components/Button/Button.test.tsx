@@ -42,7 +42,9 @@ describe("Given a Button component", () => {
     test("Then it should show an anchor element styled as a button", () => {
       const buttonAs = "a";
       render(
-        <Button options={{ as: buttonAs, href: "/" }}>{buttonText}</Button>,
+        <Button as={buttonAs} options={{ href: "/" }}>
+          {buttonText}
+        </Button>,
         {
           wrapper: ContextWrapper,
         }
