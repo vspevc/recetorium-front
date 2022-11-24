@@ -42,7 +42,6 @@ const GlobalStyle = createGlobalStyle`
 
   button,
   input {
-    display: block;
     padding: ${(props) => props.theme.sizes.smallElementPadding.vertical} ${(
   props
 ) => props.theme.sizes.smallElementPadding.horizontal};

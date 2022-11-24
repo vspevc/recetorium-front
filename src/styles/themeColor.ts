@@ -33,7 +33,7 @@ const themeColor: DefaultThemeColor = {
   },
   inkColor: {
     base: "#333",
-    light: "#888",
+    light: "#aaa",
   },
 };
 
