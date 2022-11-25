@@ -9,7 +9,7 @@ describe("Given a Button component", () => {
 
   describe("When it's rendered with children 'Click me'", () => {
     test("Then it should show a button with the text 'Click me' on it", () => {
-      render(<Button options={{ variant: "small" }}>{buttonText}</Button>, {
+      render(<Button>{buttonText}</Button>, {
         wrapper: ContextWrapper,
       });
 
@@ -22,14 +22,9 @@ describe("Given a Button component", () => {
   describe("When it's rendered with an action and user clicks on it", () => {
     test("Then it should invoke the action function", async () => {
       const buttonAction = jest.fn();
-      render(
-        <Button options={{ variant: "round" }} action={buttonAction}>
-          {buttonText}
-        </Button>,
-        {
-          wrapper: ContextWrapper,
-        }
-      );
+      render(<Button action={buttonAction}>{buttonText}</Button>, {
+        wrapper: ContextWrapper,
+      });
 
       const button = screen.queryByRole("button", { name: buttonText })!;
       await userEvent.click(button);
