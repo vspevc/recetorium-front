@@ -1,11 +1,23 @@
+import { closeModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import ModalStyled from "./ModalStyled";
-import ModalProps from "./types";
 
-const Modal = ({ children }: ModalProps): JSX.Element => {
+const Modal = (): JSX.Element => {
+  const { modal } = useAppSelector(({ ui }) => ui);
+  const dispatch = useAppDispatch();
+
+  const closeModal = () => {
+    dispatch(closeModalActionCreator());
+  };
+
   return (
     <ModalStyled>
-      <div className="modal-overlay"></div>
-      <div className="modal">{children}</div>
+      <div
+        data-testid="test"
+        className="modal-overlay"
+        onClick={closeModal}
+      ></div>
+      <div className="modal">{modal}</div>
     </ModalStyled>
   );
 };
