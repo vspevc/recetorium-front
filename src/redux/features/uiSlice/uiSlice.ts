@@ -13,9 +13,16 @@ const uiSlice = createSlice({
       ...currentState,
       modal: action.payload,
     }),
+    closeModal: (currentState) => ({
+      ...currentState,
+      modal: null,
+    }),
   },
 });
 
 export const uiReducer = uiSlice.reducer;
 
-export const { showModal: showModalActionCreator } = uiSlice.actions;
+export const {
+  showModal: showModalActionCreator,
+  closeModal: closeModalActionCreator,
+} = uiSlice.actions;
