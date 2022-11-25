@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import uiState from "./types";
+import UIState from "./types";
 
-const uiInitialState: uiState = {
+const uiInitialState: UIState = {
   modal: null,
 };
 

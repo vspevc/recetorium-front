@@ -1,5 +1,5 @@
-interface uiState {
+interface UIState {
   modal: JSX.Element | null;
 }
 
-export default uiState;
+export default UIState;

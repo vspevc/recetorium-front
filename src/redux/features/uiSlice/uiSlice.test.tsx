@@ -1,8 +1,8 @@
-import uiState from "./types";
+import UIState from "./types";
 import { showModalActionCreator, uiReducer } from "./uiSlice";
 
 describe("Given a uiReducer", () => {
-  const currentState: uiState = {
+  const currentState: UIState = {
     modal: null,
   };
 
