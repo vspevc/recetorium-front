@@ -3,7 +3,7 @@ import { ButtonProps } from "./types";
 
 const Button = ({
   children,
-  action = () => {},
+  action,
   as = "button",
   options = {},
 }: ButtonProps): JSX.Element => {
