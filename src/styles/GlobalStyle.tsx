@@ -24,6 +24,14 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
+  h1 {
+    font-size: ${(props) => props.theme.font.largeFontSize};
+  }
+
+  h2 {
+    font-size: ${(props) => props.theme.font.mediumFontSize};
+  }
+
   a {
     font-weight: ${(props) => props.theme.font.mediumFontWeight};
     text-decoration: none;
