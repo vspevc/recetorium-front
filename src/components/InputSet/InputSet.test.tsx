@@ -18,6 +18,7 @@ describe("Given an InputSet component", () => {
           labelText={labelText}
           captionText={captionText}
           handleValue={handleValue}
+          inputType="email"
           options={{ isDisabled: true, isError: true }}
         />,
         { wrapper: ContextWrapper }
