@@ -8,6 +8,7 @@ const InputSet = ({
   handleValue,
   labelText,
   inputValue = "",
+  inputType = "text",
   captionText = "",
   options = { isDisabled: false, isError: false },
 }: InputSetProps): JSX.Element => {
@@ -27,7 +28,7 @@ const InputSet = ({
           id={id}
           className="input-set__input"
           onChange={handleValue}
-          type="text"
+          type={inputType}
           disabled={options.isDisabled}
           value={inputValue}
         />

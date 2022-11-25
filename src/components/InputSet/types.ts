@@ -8,6 +8,7 @@ export interface InputSetProps {
   labelText: string;
   handleValue: (event: React.ChangeEvent<HTMLInputElement>) => void;
   inputValue?: string;
+  inputType?: "text" | "password" | "email";
   captionText?: string;
   options?: InputSetStyledProps;
 }
