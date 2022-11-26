@@ -5,40 +5,65 @@ import { ModalStructure } from "../../redux/features/uiSlice/types";
 import Modal from "./Modal";
 
 describe("Given a Modal component", () => {
-  const modalContentTitle = "Test";
-  const modalContent: ModalStructure = {
-    isOpen: true,
-    title: "Test",
-    content: "Test content",
-    type: "success",
-  };
+  describe("When it's rendered with modal ui state type 'success' and title 'Well done'", () => {
+    const modalContentTitle = "Well done";
+    const modalContent: ModalStructure = {
+      title: modalContentTitle,
+      content: "You make a great work.",
+      type: "success",
+    };
 
-  describe("When it's rendered with children <button>Close</button>", () => {
-    test("Then it should show a modal with <button>Close</button>", () => {
+    test("Then it should show a modal with a heading level 2 'Well done'", () => {
       renderWithProviders(<Modal />, {
         preloadedState: { ui: { modal: modalContent } },
       });
       const expectedModalContent = screen.queryByRole("heading", {
         name: modalContentTitle,
+        level: 2,
       });
 
       expect(expectedModalContent).toBeInTheDocument();
     });
+
+    describe("And user clicks on button 'Salir'", () => {
+      test("Then it should empty modal content", async () => {
+        const closeButtonText = "Salir";
+        renderWithProviders(<Modal />, {
+          preloadedState: { ui: { modal: modalContent } },
+        });
+        const expectedModalContent = screen.queryByRole("heading", {
+          name: modalContentTitle,
+          level: 2,
+        });
+
+        const closeButton = screen.queryByRole("button", {
+          name: closeButtonText,
+        }) as HTMLButtonElement;
+        await userEvent.click(closeButton);
+
+        expect(expectedModalContent).not.toBeInTheDocument();
+      });
+    });
   });
 
-  describe("When it's rendered and user click on the modal overlay", () => {
-    test("Then it should call closeModal function", async () => {
+  describe("When it's rendered with modal ui state type 'success' and title 'Something wrong'", () => {
+    test("Then it should show a modal with a heading level 2 'Something wrong'", () => {
+      const modalContentTitle = "Something wrong";
+      const modalContent: ModalStructure = {
+        title: modalContentTitle,
+        content: "There's something wrong try again.",
+        type: "error",
+      };
+
       renderWithProviders(<Modal />, {
         preloadedState: { ui: { modal: modalContent } },
       });
-      const expectedModalContent = screen.queryByRole("button", {
+      const expectedModalContent = screen.queryByRole("heading", {
         name: modalContentTitle,
+        level: 2,
       });
 
-      const modalOverlay = screen.queryByTestId("test")!;
-      await userEvent.click(modalOverlay);
-
-      expect(expectedModalContent).not.toBeInTheDocument();
+      expect(expectedModalContent).toBeInTheDocument();
     });
   });
 });

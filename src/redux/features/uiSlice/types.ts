@@ -1,6 +1,6 @@
 export interface ModalStructure {
   isOpen?: boolean;
-  type: "success" | "error";
+  type: "default" | "success" | "error";
   title?: string;
   content?: string;
 }
