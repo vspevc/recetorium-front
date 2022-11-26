@@ -1,4 +1,4 @@
-import UIState from "./types";
+import { ModalStructure, UIState } from "./types";
 import {
   closeModalActionCreator,
   showModalActionCreator,
@@ -7,7 +7,12 @@ import {
 
 describe("Given a uiReducer", () => {
   const currentState: UIState = {
-    modal: null,
+    modal: {
+      isOpen: false,
+      title: "",
+      content: "",
+      type: "success",
+    },
   };
 
   describe("When it receives the current ui state and an unknown action", () => {
@@ -22,7 +27,12 @@ describe("Given a uiReducer", () => {
 
   describe("When it receives the current ui state and a showModal action with <p>Hola</p>", () => {
     test("Then it should return a new ui state with modal <p>Hola</p>", () => {
-      const modalContent: JSX.Element = <p>Hola</p>;
+      const modalContent: ModalStructure = {
+        isOpen: true,
+        title: "Modal title",
+        content: "Modal content",
+        type: "success",
+      };
       const expectedProperty = "modal";
 
       const newState = uiReducer(
@@ -37,7 +47,12 @@ describe("Given a uiReducer", () => {
   describe("When it receives the current ui state and a closeModal action", () => {
     test("Then it should return a new ui state with modal null", () => {
       const expectedProperty = "modal";
-      const expectedPropertyValue = null;
+      const expectedPropertyValue: ModalStructure = {
+        isOpen: false,
+        title: "",
+        content: "",
+        type: "success",
+      };
 
       const newState = uiReducer(currentState, closeModalActionCreator());
 

@@ -1,5 +1,10 @@
-interface UIState {
-  modal: JSX.Element | null;
+export interface ModalStructure {
+  isOpen?: boolean;
+  type: "success" | "error";
+  title?: string;
+  content?: string;
 }
 
-export default UIState;
+export interface UIState {
+  modal: ModalStructure;
+}

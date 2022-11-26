@@ -1,21 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import UIState from "./types";
+import { ModalStructure, UIState } from "./types";
 
 const uiInitialState: UIState = {
-  modal: null,
+  modal: {
+    isOpen: false,
+    title: "",
+    content: "",
+    type: "success",
+  },
 };
 
 const uiSlice = createSlice({
   name: "ui",
   initialState: uiInitialState,
   reducers: {
-    showModal: (currentState, action: PayloadAction<JSX.Element>) => ({
+    showModal: (currentState, action: PayloadAction<ModalStructure>) => ({
       ...currentState,
-      modal: action.payload,
+      modal: { ...action.payload, isOpen: true },
     }),
     closeModal: (currentState) => ({
       ...currentState,
-      modal: null,
+      modal: {
+        isOpen: false,
+        title: "",
+        content: "",
+        type: "success",
+      },
     }),
   },
 });
