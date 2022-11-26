@@ -5,12 +5,8 @@ import ModalStyled from "./ModalStyled";
 
 const Modal = (): JSX.Element => {
   const { modal } = useAppSelector(({ ui }) => ui);
-  const { type, isOpen } = modal;
+  const { type } = modal;
   const dispatch = useAppDispatch();
-
-  if (!isOpen) {
-    return <></>;
-  }
 
   const closeModal = () => {
     dispatch(closeModalActionCreator());
@@ -41,14 +37,7 @@ const Modal = (): JSX.Element => {
       break;
 
     default:
-      modalContent = (
-        <FeedbackModal
-          title="Algo ha salido mal"
-          content="Vuelve a intentarlo y si el problema persiste ponte en contacto con los administradores."
-          closeAction={closeModal}
-          isError={true}
-        />
-      );
+      modalContent = <></>;
   }
 
   return (

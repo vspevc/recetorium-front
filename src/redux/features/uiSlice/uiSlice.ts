@@ -6,7 +6,7 @@ const uiInitialState: UIState = {
     isOpen: false,
     title: "",
     content: "",
-    type: "success",
+    type: "default",
   },
 };
 
@@ -24,7 +24,7 @@ const uiSlice = createSlice({
         isOpen: false,
         title: "",
         content: "",
-        type: "success",
+        type: "default",
       },
     }),
   },

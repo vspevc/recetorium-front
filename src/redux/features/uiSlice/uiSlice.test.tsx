@@ -11,7 +11,7 @@ describe("Given a uiReducer", () => {
       isOpen: false,
       title: "",
       content: "",
-      type: "success",
+      type: "default",
     },
   };
 
@@ -51,7 +51,7 @@ describe("Given a uiReducer", () => {
         isOpen: false,
         title: "",
         content: "",
-        type: "success",
+        type: "default",
       };
 
       const newState = uiReducer(currentState, closeModalActionCreator());
