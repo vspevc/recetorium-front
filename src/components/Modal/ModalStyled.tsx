@@ -18,6 +18,7 @@ const ModalStyled = styled.div`
     transform: translate(-50%, -50%);
     padding: ${(props) =>
       `${props.theme.sizes.mainElementVerticalPadding} ${props.theme.sizes.mobileHorizontalPadding}`};
+    width: 370px;
     border-radius: 8px;
     background-color: ${(props) => props.theme.color.backgroundColor.base};
   }
