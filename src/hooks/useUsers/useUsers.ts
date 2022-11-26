@@ -4,7 +4,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { showModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import { ModalStructure } from "../../redux/features/uiSlice/types";
 import recetoriumApi from "../../utils/api/recetoriumApi";
-import apiMessageToSpanish from "../../utils/api/apiMessageToSpanish";
+import apiMessageToSpanish from "../../utils/api/translations/apiMessageToSpanish";
 
 const useUsers = () => {
   const dispatch = useAppDispatch();
