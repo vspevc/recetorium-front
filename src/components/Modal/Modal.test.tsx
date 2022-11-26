@@ -7,7 +7,7 @@ import Modal from "./Modal";
 describe("Given a Modal component", () => {
   const modalContentTitle = "Test";
   const modalContent: ModalStructure = {
-    isOpen: false,
+    isOpen: true,
     title: "Test",
     content: "Test content",
     type: "success",
