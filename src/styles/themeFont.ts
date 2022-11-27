@@ -6,8 +6,8 @@ const themeFont: DefaultThemeFont = {
 
   mainFontSize: "1.25rem",
   mediumFontSize: "1.5rem",
-  largeFontSize: "1.875",
-  smallFontSize: "5",
+  largeFontSize: "1.875rem",
+  largestFontSize: "5rem",
 
   mainFontWeight: "400",
   mediumFontWeight: "500",

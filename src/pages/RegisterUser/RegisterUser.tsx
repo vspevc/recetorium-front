@@ -3,7 +3,7 @@ import RegisterForm from "../../components/RegisterForm/RegisterForm";
 const RegisterUser = (): JSX.Element => {
   return (
     <>
-      <h2>Registrarse es gratis</h2>
+      <h1>Registrarse es gratis</h1>
       <RegisterForm />
     </>
   );

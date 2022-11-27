@@ -39,7 +39,7 @@ export interface DefaultThemeFont {
   mainFontSize: string;
   mediumFontSize: string;
   largeFontSize: string;
-  smallFontSize: string;
+  largestFontSize: string;
 
   mainFontWeight: string;
   mediumFontWeight: string;
