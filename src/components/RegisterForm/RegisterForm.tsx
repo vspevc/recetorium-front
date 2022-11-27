@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { ValidationError } from "joi";
 import RegisterUserData from "../../hooks/useUsers/types";
 import useUsers from "../../hooks/useUsers/useUsers";
 import Button from "../Button/Button";
 import InputSet from "../InputSet/InputSet";
 import RegisterFormStyled from "./RegisterFormStyled";
+import registerFormValidator from "./registerFormValidator";
+import processJoiError from "../../utils/joi/processJoiError";
 
 const RegisterForm = (): JSX.Element => {
   const { registerUser } = useUsers();
@@ -13,18 +16,41 @@ const RegisterForm = (): JSX.Element => {
     password: "",
     passwordConfirm: "",
   });
+  const [formErrors, setFormErrors] = useState({
+    username: false,
+    email: false,
+    password: false,
+    passwordConfirm: false,
+  });
+  const {
+    username: usernameError,
+    email: emailError,
+    password: passwordError,
+    passwordConfirm: passwordConfirmError,
+  } = formErrors;
 
   const handleRegisterFormData = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const input = event.target;
     const { id: inputId, value: inputValue } = input;
+    setFormErrors({ ...formErrors, [inputId]: false });
 
     setRegisterFormData({ ...registerFormData, [inputId]: inputValue });
   };
-  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    registerUser(registerFormData);
+    try {
+      await registerFormValidator(registerFormData);
+
+      registerUser(registerFormData);
+    } catch (error: unknown) {
+      const errors = processJoiError(error as ValidationError).reduce(
+        (currentValue, inputError) => ({ ...currentValue, [inputError]: true }),
+        {}
+      );
+      setFormErrors({ ...formErrors, ...errors });
+    }
   };
 
   return (
@@ -37,6 +63,7 @@ const RegisterForm = (): JSX.Element => {
           captionText="Debe tener entre 3 y 30 caracteres alfanuméricos"
           inputValue={registerFormData.username}
           handleValue={handleRegisterFormData}
+          options={{ isError: usernameError }}
         />
 
         <InputSet
@@ -45,6 +72,7 @@ const RegisterForm = (): JSX.Element => {
           labelText="Email"
           inputValue={registerFormData.email}
           handleValue={handleRegisterFormData}
+          options={{ isError: emailError }}
         />
 
         <InputSet
@@ -54,6 +82,7 @@ const RegisterForm = (): JSX.Element => {
           captionText="Debe tener entre 8 y 30 caracteres alfanuméricos y símbolos"
           inputValue={registerFormData.password}
           handleValue={handleRegisterFormData}
+          options={{ isError: passwordError }}
         />
 
         <InputSet
@@ -62,6 +91,7 @@ const RegisterForm = (): JSX.Element => {
           labelText="Repite tu contraseña"
           inputValue={registerFormData.passwordConfirm}
           handleValue={handleRegisterFormData}
+          options={{ isError: passwordConfirmError }}
         />
 
         <Button options={{ type: "submit" }}>Registrarse</Button>
