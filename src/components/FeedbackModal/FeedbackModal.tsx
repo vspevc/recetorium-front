@@ -12,9 +12,9 @@ const FeedbackModal = ({
     <FeedbackModalStyled isError={isError}>
       <h2 className="modal__title">{title}</h2>
       <p className="modal__content">{content}</p>
-      <div className="modal__button">
-        <Button action={closeAction}>Salir</Button>
-      </div>
+      <Button className="modal__button" action={closeAction}>
+        Salir
+      </Button>
     </FeedbackModalStyled>
   );
 };
