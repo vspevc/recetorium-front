@@ -45,9 +45,7 @@ const RegisterForm = (): JSX.Element => {
 
       registerUser(registerFormData);
     } catch (error: unknown) {
-      const errors = await processJoiError(
-        (error as ValidationError).message
-      ).reduce(
+      const errors = processJoiError((error as ValidationError).message).reduce(
         (currentValue, inputError) => ({ ...currentValue, [inputError]: true }),
         {}
       );
@@ -96,7 +94,9 @@ const RegisterForm = (): JSX.Element => {
           options={{ isError: passwordConfirmError, required: true }}
         />
 
-        <Button options={{ type: "submit" }}>Registrarse</Button>
+        <Button className="register-form__button" options={{ type: "submit" }}>
+          Registrarse
+        </Button>
       </form>
     </RegisterFormStyled>
   );

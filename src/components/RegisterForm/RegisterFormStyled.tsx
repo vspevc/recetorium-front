@@ -8,7 +8,7 @@ const RegisterFormStyled = styled.div`
     margin: 0 auto;
     max-width: 430px;
 
-    button {
+    &__button {
       margin-top: 20px;
       align-self: baseline;
     }

@@ -3,6 +3,7 @@ import { FeedbackModalStyledProps } from "./types";
 
 const FeedbackModalStyled = styled.div<FeedbackModalStyledProps>`
   .modal__title {
+    border: none;
     color: ${(props) =>
       props.isError
         ? props.theme.color.primaryColor.dark
@@ -10,8 +11,8 @@ const FeedbackModalStyled = styled.div<FeedbackModalStyledProps>`
   }
 
   .modal__button {
-    display: flex;
-    justify-content: center;
+    display: block;
+    margin: 0 auto;
   }
 `;
 
