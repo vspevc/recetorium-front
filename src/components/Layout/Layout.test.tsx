@@ -9,7 +9,7 @@ describe("Given a Layout component", () => {
     test("Then it should show the register user page", () => {
       const registerUserPath = paths.registerUser;
       const expectedHeadingText = /registrarse es gratis/i;
-      const expectedHeadingLevel = 2;
+      const expectedHeadingLevel = 1;
 
       renderWithProviders(
         <MemoryRouter initialEntries={[registerUserPath]}>
