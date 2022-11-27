@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import "normalize.css";
 import "@fontsource/alegreya-sans/400.css";
 import "@fontsource/alegreya-sans/500.css";
+import "@fontsource/alegreya-sans/700.css";
 import "@fontsource/alegreya-sans/900.css";
 import "@fontsource/cinzel-decorative/400.css";
 import "@fontsource/cinzel-decorative/900.css";

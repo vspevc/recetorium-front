@@ -11,7 +11,8 @@ const themeFont: DefaultThemeFont = {
 
   mainFontWeight: "400",
   mediumFontWeight: "500",
-  boldFontWeight: "900",
+  boldFontWeight: "700",
+  bolderFontWeight: "900",
 };
 
 export default themeFont;
