@@ -72,18 +72,6 @@ const GlobalStyle = createGlobalStyle`
   label {
     font-weight: ${(props) => props.theme.font.mediumFontWeight};
   }
-
-  header,
-  main,
-  footer {
-    margin: 0 auto;
-    padding: 0 ${(props) => props.theme.sizes.mobileHorizontalPadding};
-    max-width: ${(props) => props.theme.sizes.maxWidth};
-
-    @media screen and (min-width: 900px) {
-      padding: 0 ${(props) => props.theme.sizes.mobileHorizontalPadding};
-    }
-  }
 `;
 
 export default GlobalStyle;
