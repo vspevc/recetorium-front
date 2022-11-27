@@ -1,6 +1,7 @@
 export interface InputSetStyledProps {
   isDisabled?: boolean;
   isError?: boolean;
+  required?: boolean;
 }
 
 export interface InputSetProps {

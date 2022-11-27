@@ -10,7 +10,7 @@ const InputSet = ({
   inputValue = "",
   inputType = "text",
   captionText = "",
-  options = { isDisabled: false, isError: false },
+  options = { isDisabled: false, isError: false, required: false },
 }: InputSetProps): JSX.Element => {
   return (
     <InputStyled {...options}>
@@ -32,6 +32,7 @@ const InputSet = ({
           disabled={options.isDisabled}
           value={inputValue}
           autoComplete="off"
+          required={options.required}
         />
       </div>
 

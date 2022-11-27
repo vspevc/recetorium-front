@@ -65,7 +65,7 @@ const RegisterForm = (): JSX.Element => {
           captionText="Debe tener entre 3 y 30 caracteres alfanuméricos"
           inputValue={registerFormData.username}
           handleValue={handleRegisterFormData}
-          options={{ isError: usernameError }}
+          options={{ isError: usernameError, required: true }}
         />
 
         <InputSet
@@ -74,7 +74,7 @@ const RegisterForm = (): JSX.Element => {
           labelText="Email"
           inputValue={registerFormData.email}
           handleValue={handleRegisterFormData}
-          options={{ isError: emailError }}
+          options={{ isError: emailError, required: true }}
         />
 
         <InputSet
@@ -84,7 +84,7 @@ const RegisterForm = (): JSX.Element => {
           captionText="Debe tener entre 8 y 30 caracteres alfanuméricos y símbolos"
           inputValue={registerFormData.password}
           handleValue={handleRegisterFormData}
-          options={{ isError: passwordError }}
+          options={{ isError: passwordError, required: true }}
         />
 
         <InputSet
@@ -93,7 +93,7 @@ const RegisterForm = (): JSX.Element => {
           labelText="Repite tu contraseña"
           inputValue={registerFormData.passwordConfirm}
           handleValue={handleRegisterFormData}
-          options={{ isError: passwordConfirmError }}
+          options={{ isError: passwordConfirmError, required: true }}
         />
 
         <Button options={{ type: "submit" }}>Registrarse</Button>
