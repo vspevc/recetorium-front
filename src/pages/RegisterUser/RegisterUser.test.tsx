@@ -6,7 +6,7 @@ describe("Given a RegisterUser page", () => {
   describe("When it's rendered", () => {
     test("Then it should show a heading level 2 'Registrarse es gratis'", () => {
       const expectedHeadingText = /registrarse es gratis/i;
-      const expectedHeadingLevel = 2;
+      const expectedHeadingLevel = 1;
 
       renderWithProviders(<RegisterUser />);
       const expectedHeading = screen.queryByRole("heading", {
