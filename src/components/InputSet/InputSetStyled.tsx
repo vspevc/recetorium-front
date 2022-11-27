@@ -32,6 +32,12 @@ const InputStyled = styled.div<InputSetStyledProps>`
   flex-direction: column;
   flex-grow: 1;
 
+  input[type="password"] {
+    font: small-caption;
+    font-size: ${(props) => props.theme.font.mainFontSize};
+    letter-spacing: 0.1rem;
+  }
+
   .input-set__icon-wrapper {
     position: relative;
   }

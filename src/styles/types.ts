@@ -44,6 +44,7 @@ export interface DefaultThemeFont {
   mainFontWeight: string;
   mediumFontWeight: string;
   boldFontWeight: string;
+  bolderFontWeight: string;
 }
 
 export interface DefaultThemeStyles {

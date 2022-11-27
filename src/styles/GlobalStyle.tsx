@@ -22,6 +22,8 @@ const GlobalStyle = createGlobalStyle`
   h5,
   h6 {
     margin: 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid ${(props) => props.theme.color.primaryColor.base};
   }
 
   h1 {
@@ -65,6 +67,10 @@ const GlobalStyle = createGlobalStyle`
 
   input[type="file"] {
     display: none;
+  }
+
+  label {
+    font-weight: ${(props) => props.theme.font.mediumFontWeight};
   }
 
   header,
