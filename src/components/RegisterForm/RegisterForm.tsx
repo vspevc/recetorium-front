@@ -55,7 +55,6 @@ const RegisterForm = (): JSX.Element => {
 
   return (
     <RegisterFormStyled>
-      <h2>Registrarse es gratis</h2>
       <form className="register-form" onSubmit={handleSubmit}>
         <InputSet
           id="username"

@@ -23,21 +23,6 @@ describe("Given a RegisterForm component", () => {
     passwordConfirm: "qwedsazxc",
   };
 
-  describe("When it's rendered", () => {
-    test("Then it should show a heading level 2 'Registrarse es gratis'", () => {
-      const expectedHeadingText = "Registrarse es gratis";
-      const expectedHeadingLevel = 2;
-
-      renderWithProviders(<RegisterForm />);
-      const expectedHeading = screen.queryByRole("heading", {
-        name: expectedHeadingText,
-        level: expectedHeadingLevel,
-      });
-
-      expect(expectedHeading).toBeInTheDocument();
-    });
-  });
-
   describe("When it's rendered and user submit with valid username 'Bob', email 'bob@this.com', password 'qwedsazxc'", () => {
     test("Then it should call registerUser with username 'Bob', email 'bob@this.com', password 'qwedsazxc'", async () => {
       const { username, email, password, passwordConfirm } = bobUser;
