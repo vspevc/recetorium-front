@@ -45,7 +45,9 @@ const RegisterForm = (): JSX.Element => {
 
       registerUser(registerFormData);
     } catch (error: unknown) {
-      const errors = processJoiError(error as ValidationError).reduce(
+      const errors = await processJoiError(
+        (error as ValidationError).message
+      ).reduce(
         (currentValue, inputError) => ({ ...currentValue, [inputError]: true }),
         {}
       );
