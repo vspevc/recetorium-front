@@ -1,11 +1,5 @@
-import RegisterUser from "../../pages/RegisterUser/RegisterUser";
-
 const App = (): JSX.Element => {
-  return (
-    <div className="container">
-      <RegisterUser />
-    </div>
-  );
+  return <div className="container"></div>;
 };
 
 export default App;
