@@ -1,7 +1,5 @@
-import { ValidationError } from "joi";
-
-const processJoiError = (error: ValidationError): string[] => {
-  return error.message
+const processJoiError = (error: string): string[] => {
+  return error
     .split(". ")
     .map((errorMessage) =>
       errorMessage.substring(0, errorMessage.indexOf(" ")).replaceAll('"', "")
