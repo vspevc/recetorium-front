@@ -5,6 +5,7 @@ const Button = ({
   children,
   action,
   className = "",
+  ariaLabel = "",
   as = "button",
   options = {},
 }: ButtonProps): JSX.Element => {
@@ -12,6 +13,7 @@ const Button = ({
   return (
     <ButtonStyled
       className={`button${extraClassName}`}
+      aria-label={ariaLabel}
       onClick={action}
       as={as}
       {...options}

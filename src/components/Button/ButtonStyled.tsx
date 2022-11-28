@@ -22,7 +22,7 @@ const ButtonStyled = styled.button<ButtonStyledProps>`
   display: inline-block;
   padding: ${(props) =>
     `${props.theme.sizes.smallElementPadding.vertical} ${props.theme.sizes.smallElementPadding.horizontal}`};
-  min-height: 45px;
+  height: 46px;
   min-width: 45px;
   border: 2px solid ${(props) => props.theme.color.secondaryColor.darkest};
   border-radius: 5px;
