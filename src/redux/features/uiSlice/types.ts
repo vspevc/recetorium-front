@@ -5,6 +5,11 @@ export interface ModalStructure {
   content?: string;
 }
 
+export interface FeedbackModalPayload {
+  title: string;
+  content: string;
+}
+
 export interface UIState {
   modal: ModalStructure;
 }
