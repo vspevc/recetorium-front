@@ -2,6 +2,7 @@ export interface ButtonProps {
   children: JSX.Element | string;
   action?: () => void;
   className?: string;
+  ariaLabel?: string;
   as?: "button" | "a" | "label";
   options?: ButtonOptions;
 }
