@@ -2,7 +2,6 @@ import RegisterUserData from "./types";
 import { AxiosError } from "axios";
 import { useAppDispatch } from "../../redux/hooks";
 import { showModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
-import { ModalStructure } from "../../redux/features/uiSlice/types";
 import recetoriumApi from "../../utils/api/recetoriumApi";
 import apiMessageToSpanish from "../../utils/api/translations/apiMessageToSpanish";
 import loadModal from "../../utils/modals/loadModal";
