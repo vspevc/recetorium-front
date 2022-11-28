@@ -2,9 +2,9 @@ import RegisterUserData from "./types";
 import { AxiosError } from "axios";
 import { useAppDispatch } from "../../redux/hooks";
 import { showModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
-import { ModalStructure } from "../../redux/features/uiSlice/types";
 import recetoriumApi from "../../utils/api/recetoriumApi";
 import apiMessageToSpanish from "../../utils/api/translations/apiMessageToSpanish";
+import loadModal from "../../utils/modals/loadModal";
 
 const useUsers = () => {
   const dispatch = useAppDispatch();
@@ -14,14 +14,11 @@ const useUsers = () => {
     try {
       await apiConnection.post("users/register", registerUserData);
 
-      const modalData: ModalStructure = {
-        isOpen: true,
-        type: "success",
-        title: "Tu usuario ha sido registrado",
-        content:
-          "Enhorabuena ahora puedes acceder a todo el contenido entrando con tu nuevo usuario.",
-      };
-      dispatch(showModalActionCreator(modalData));
+      const modal = loadModal.successFeedback(
+        "Tu usuario ha sido registrado",
+        "Enhorabuena ahora puedes acceder a todo el contenido entrando con tu nuevo usuario."
+      );
+      dispatch(showModalActionCreator(modal));
     } catch (error: unknown) {
       let errorMessage = "Ha habido un error en el registro";
 
@@ -35,13 +32,11 @@ const useUsers = () => {
         errorMessage = apiMessageToSpanish(errorMessage);
       }
 
-      const modalData: ModalStructure = {
-        isOpen: true,
-        type: "error",
-        title: "Error al intentar regitrar nuevo usuario",
-        content: errorMessage,
-      };
-      dispatch(showModalActionCreator(modalData));
+      const modal = loadModal.errorFeedback(
+        "Error al intentar regitrar nuevo usuario",
+        errorMessage
+      );
+      dispatch(showModalActionCreator(modal));
     }
   };
 
