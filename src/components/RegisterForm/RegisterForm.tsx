@@ -7,8 +7,13 @@ import InputSet from "../InputSet/InputSet";
 import RegisterFormStyled from "./RegisterFormStyled";
 import registerFormValidator from "./registerFormValidator";
 import processJoiError from "../../utils/joi/processJoiError";
+import { useAppDispatch } from "../../redux/hooks";
+import { showModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import loadModal from "../../utils/modals/loadModal";
+import apiMessageToSpanish from "../../utils/api/translations/apiMessageToSpanish";
 
 const RegisterForm = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const { registerUser } = useUsers();
   const [registerFormData, setRegisterFormData] = useState<RegisterUserData>({
     username: "",
@@ -45,11 +50,25 @@ const RegisterForm = (): JSX.Element => {
 
       registerUser(registerFormData);
     } catch (error: unknown) {
-      const errors = processJoiError((error as ValidationError).message).reduce(
+      const errorMessages = (error as ValidationError).message;
+      const errors = processJoiError(errorMessages).reduce(
         (currentValue, inputError) => ({ ...currentValue, [inputError]: true }),
         {}
       );
+
       setFormErrors({ ...formErrors, ...errors });
+
+      const translatedErrors = apiMessageToSpanish(
+        errorMessages.replaceAll(". ", ", ")
+      );
+      dispatch(
+        showModalActionCreator(
+          loadModal.errorFeedback(
+            "Error al intentar regitrar nuevo usuario",
+            translatedErrors
+          )
+        )
+      );
     }
   };
 
