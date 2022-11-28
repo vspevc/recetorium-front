@@ -8,8 +8,7 @@ import RegisterFormStyled from "./RegisterFormStyled";
 import registerFormValidator from "./registerFormValidator";
 import processJoiError from "../../utils/joi/processJoiError";
 import { useAppDispatch } from "../../redux/hooks";
-import { showModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
-import loadModal from "../../utils/modals/loadModal";
+import { showErrorModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import apiMessageToSpanish from "../../utils/api/translations/apiMessageToSpanish";
 
 const RegisterForm = (): JSX.Element => {
@@ -62,12 +61,10 @@ const RegisterForm = (): JSX.Element => {
         errorMessages.replaceAll(". ", ", ")
       );
       dispatch(
-        showModalActionCreator(
-          loadModal.errorFeedback(
-            "Error al intentar regitrar nuevo usuario",
-            translatedErrors
-          )
-        )
+        showErrorModalActionCreator({
+          title: "Error al intentar regitrar nuevo usuario",
+          content: translatedErrors,
+        })
       );
     }
   };

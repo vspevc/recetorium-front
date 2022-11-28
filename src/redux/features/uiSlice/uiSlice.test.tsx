@@ -1,7 +1,8 @@
 import { ModalStructure, UIState } from "./types";
 import {
   closeModalActionCreator,
-  showModalActionCreator,
+  showErrorModalActionCreator,
+  showSuccessModalActionCreator,
   uiReducer,
 } from "./uiSlice";
 
@@ -25,19 +26,44 @@ describe("Given a uiReducer", () => {
     });
   });
 
-  describe("When it receives the current ui state and a showModal action with <p>Hola</p>", () => {
-    test("Then it should return a new ui state with modal <p>Hola</p>", () => {
+  describe("When it receives the current ui state and a showSuccessModal action with title 'Well done' and content 'Great job'", () => {
+    test("Then it should return a new ui state with modal isOpen true, type 'success', title 'Well done' and content 'Great job'", () => {
       const modalContent: ModalStructure = {
         isOpen: true,
-        title: "Modal title",
-        content: "Modal content",
         type: "success",
+        title: "Well done",
+        content: "Great job",
       };
       const expectedProperty = "modal";
 
       const newState = uiReducer(
         currentState,
-        showModalActionCreator(modalContent)
+        showSuccessModalActionCreator({
+          title: modalContent.title!,
+          content: modalContent.content!,
+        })
+      );
+
+      expect(newState).toHaveProperty(expectedProperty, modalContent);
+    });
+  });
+
+  describe("When it receives the current ui state and a showErrorModal action with title 'Not good' and content 'Next time'", () => {
+    test("Then it should return a new ui state with modal isOpen true, type 'error', title 'Not good' and content 'Next time'", () => {
+      const modalContent: ModalStructure = {
+        isOpen: true,
+        type: "error",
+        title: "Not good",
+        content: "Next time",
+      };
+      const expectedProperty = "modal";
+
+      const newState = uiReducer(
+        currentState,
+        showErrorModalActionCreator({
+          title: modalContent.title!,
+          content: modalContent.content!,
+        })
       );
 
       expect(newState).toHaveProperty(expectedProperty, modalContent);
