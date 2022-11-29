@@ -48,7 +48,8 @@
     "collectCoverageFrom": [
       "src/**/*.ts",
       "src/**/*.tsx",
-      "!src/index.tsx"
+      "!src/index.tsx",
+      "!src/styles/GlobalStyle.tsx"
     ]
   },
   "babelConfig": {
