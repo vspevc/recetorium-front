@@ -9,11 +9,11 @@ const RecipeCard = ({ recipe }: RecipeCardProps): JSX.Element => {
   return (
     <RecipeCardStyled>
       <header className="recipe-card__header">
-        <h3 className="recipe-card__title">{name}</h3>
+        <h2 className="recipe-card__title">{name}</h2>
         <img
           className="recipe-card__image"
           src={image}
-          alt="{name}"
+          alt={name}
           height="308"
           width="432"
         />
