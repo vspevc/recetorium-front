@@ -1,7 +1,6 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../mocks/renderWithProviders";
-import { RecipeStructure } from "../../redux/features/recipesSlice/types";
 import { ModalStructure } from "../../redux/features/uiSlice/types";
 import Modal from "./Modal";
 
@@ -18,7 +17,7 @@ describe("Given a Modal component", () => {
       renderWithProviders(<Modal />, {
         preloadedState: {
           ui: { modal: modalContent },
-          recipes: { recipes: {} as RecipeStructure[] },
+          recipes: { recipes: [] },
         },
       });
       const expectedModalContent = screen.queryByRole("heading", {
@@ -35,7 +34,7 @@ describe("Given a Modal component", () => {
         renderWithProviders(<Modal />, {
           preloadedState: {
             ui: { modal: modalContent },
-            recipes: { recipes: {} as RecipeStructure[] },
+            recipes: { recipes: [] },
           },
         });
         const expectedModalContent = screen.queryByRole("heading", {
@@ -65,7 +64,7 @@ describe("Given a Modal component", () => {
       renderWithProviders(<Modal />, {
         preloadedState: {
           ui: { modal: modalContent },
-          recipes: { recipes: {} as RecipeStructure[] },
+          recipes: { recipes: [] },
         },
       });
       const expectedModalContent = screen.queryByRole("heading", {

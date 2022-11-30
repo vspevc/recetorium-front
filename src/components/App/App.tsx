@@ -6,6 +6,7 @@ const App = (): JSX.Element => {
   const {
     modal: { isOpen: isModalOpen },
   } = useAppSelector(({ ui }) => ui);
+
   return (
     <div className="container">
       <Layout />

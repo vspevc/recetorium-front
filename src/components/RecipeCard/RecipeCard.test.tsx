@@ -18,7 +18,7 @@ describe("Given a RecipeCard component", () => {
 
   describe("When it's rendered with recipe name 'Yummy salad'", () => {
     test("Then it should show a heading level 3 with 'Yummy salad'", () => {
-      const expectedHeadingLevel = 3;
+      const expectedHeadingLevel = 2;
 
       renderWithProviders(<RecipeCard recipe={recipe} />);
       const expectedHeading = screen.queryByRole("heading", {

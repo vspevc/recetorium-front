@@ -9,7 +9,7 @@ const RecipeList = (): JSX.Element => {
     <RecipeListStyled>
       <div className="recipe-list">
         {recipes.map((recipe) => (
-          <RecipeCard recipe={recipe} />
+          <RecipeCard key={recipe.id} recipe={recipe} />
         ))}
       </div>
     </RecipeListStyled>
