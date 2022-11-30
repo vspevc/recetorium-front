@@ -1,5 +1,4 @@
 import { screen } from "@testing-library/react";
-import { renderWithProviders } from "../../mocks/renderWithProviders";
 import { renderWithProvidersAndRouter } from "../../mocks/renderWithProvidersAndRouer";
 import { RecipeStructure } from "../../redux/features/recipesSlice/types";
 import { ModalStructure } from "../../redux/features/uiSlice/types";
