@@ -1,8 +1,5 @@
 import { rest } from "msw";
-import {
-  eightRecipes,
-  recipeTomatoSoup,
-} from "../factories/recipeFactory/recipeFactory";
+import { eightRecipes } from "../factories/recipeFactory/recipeFactory";
 
 const { REACT_APP_API_URL: apiUrl } = process.env;
 
@@ -31,7 +28,7 @@ export const handlers = [
       })
     )
   ),
-  rest.post(`${apiUrl}recipes/search`, (req, res) =>
+  rest.get(`${apiUrl}recipes/search`, (req, res) =>
     res.networkError("Network Error")
   ),
 ];
