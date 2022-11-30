@@ -11,6 +11,9 @@ const MainNavigation = (): JSX.Element => {
   const toggleMenu = () => {
     setIsOpenMobileMenu(!isOpenMobileMenu);
   };
+  const closeMenu = () => {
+    setIsOpenMobileMenu(false);
+  };
   const mainMenuButtonClassName = isOpenMobileMenu
     ? " main-navigation--show"
     : "";
@@ -31,17 +34,29 @@ const MainNavigation = (): JSX.Element => {
 
       <ul className={`main-navigation__links${mainMenuButtonClassName}`}>
         <li>
-          <NavLink to={paths.root} className="main-navigation__link">
+          <NavLink
+            onClick={closeMenu}
+            to={paths.root}
+            className="main-navigation__link"
+          >
             Página principal
           </NavLink>
         </li>
         <li>
-          <NavLink to={paths.root} className="main-navigation__link">
+          <NavLink
+            onClick={closeMenu}
+            to={paths.root}
+            className="main-navigation__link"
+          >
             Login
           </NavLink>
         </li>
         <li>
-          <NavLink to={paths.registerUser} className="main-navigation__link">
+          <NavLink
+            onClick={closeMenu}
+            to={paths.registerUser}
+            className="main-navigation__link"
+          >
             Regístrate
           </NavLink>
         </li>
