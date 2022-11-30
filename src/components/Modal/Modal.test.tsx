@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../mocks/renderWithProviders";
+import { RecipeStructure } from "../../redux/features/recipesSlice/types";
 import { ModalStructure } from "../../redux/features/uiSlice/types";
 import Modal from "./Modal";
 
@@ -15,7 +16,10 @@ describe("Given a Modal component", () => {
 
     test("Then it should show a modal with a heading level 2 'Well done'", () => {
       renderWithProviders(<Modal />, {
-        preloadedState: { ui: { modal: modalContent } },
+        preloadedState: {
+          ui: { modal: modalContent },
+          recipes: { recipes: {} as RecipeStructure[] },
+        },
       });
       const expectedModalContent = screen.queryByRole("heading", {
         name: modalContentTitle,
@@ -29,7 +33,10 @@ describe("Given a Modal component", () => {
       test("Then it should empty modal content", async () => {
         const closeButtonText = "Salir";
         renderWithProviders(<Modal />, {
-          preloadedState: { ui: { modal: modalContent } },
+          preloadedState: {
+            ui: { modal: modalContent },
+            recipes: { recipes: {} as RecipeStructure[] },
+          },
         });
         const expectedModalContent = screen.queryByRole("heading", {
           name: modalContentTitle,
@@ -56,7 +63,10 @@ describe("Given a Modal component", () => {
       };
 
       renderWithProviders(<Modal />, {
-        preloadedState: { ui: { modal: modalContent } },
+        preloadedState: {
+          ui: { modal: modalContent },
+          recipes: { recipes: {} as RecipeStructure[] },
+        },
       });
       const expectedModalContent = screen.queryByRole("heading", {
         name: modalContentTitle,
