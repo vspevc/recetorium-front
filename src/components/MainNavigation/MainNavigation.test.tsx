@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ContextWrapper from "../../mocks/ContextWrapper";
+import { renderWithProvidersAndRouter } from "../../mocks/renderWithProvidersAndRouer";
 import MainNavigation from "./MainNavigation";
 
 describe("Given a MainNavigation component", () => {
@@ -8,7 +9,7 @@ describe("Given a MainNavigation component", () => {
 
   describe("When it's rendered", () => {
     test("Then it should show a main navigation button", () => {
-      render(<MainNavigation />, { wrapper: ContextWrapper });
+      renderWithProvidersAndRouter(<MainNavigation />);
       const expectedButton = screen.queryByRole("button", {
         name: buttonAriaLabel,
       });
@@ -19,7 +20,7 @@ describe("Given a MainNavigation component", () => {
 
   describe("When it's rendered and user clicks on main menu button", () => {
     test("Then it should show a list of links", async () => {
-      render(<MainNavigation />, { wrapper: ContextWrapper });
+      renderWithProvidersAndRouter(<MainNavigation />);
       const openMenuButton = screen.queryByRole("button", {
         name: buttonAriaLabel,
       }) as HTMLButtonElement;
@@ -28,6 +29,25 @@ describe("Given a MainNavigation component", () => {
       const expectedLinkList = screen.queryByRole("list");
 
       expect(expectedLinkList).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's rendered and user clicks on 'login' navigation link", () => {
+    test("Then it should hide the list of links", async () => {
+      const loginLinkText = /login/i;
+      renderWithProvidersAndRouter(<MainNavigation />);
+      const openMenuButton = screen.queryByRole("button", {
+        name: buttonAriaLabel,
+      }) as HTMLButtonElement;
+      await userEvent.click(openMenuButton);
+
+      const loginLink = screen.queryByRole("link", {
+        name: loginLinkText,
+      }) as HTMLAnchorElement;
+      await userEvent.click(loginLink);
+      const expectedLinkList = screen.queryByRole("list");
+
+      expect(expectedLinkList).not.toBeInTheDocument();
     });
   });
 });
