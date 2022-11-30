@@ -35,3 +35,4 @@ export const recipeTomatoSoup: RecipeStructure = recipeFactory.build({
   name: "Tomato soup",
   types: [{ name: "comida" }, { name: "cena" }],
 });
+export const eightRecipes = recipeList(8);

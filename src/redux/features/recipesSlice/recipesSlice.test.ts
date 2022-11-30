@@ -1,4 +1,4 @@
-import { recipeList } from "../../../factories/recipeFactory/recipeFactory";
+import { eightRecipes } from "../../../factories/recipeFactory/recipeFactory";
 import { loadRecipesActionCreator, recipesReducer } from "./recipesSlice";
 import { RecipesState } from "./types";
 
@@ -19,7 +19,7 @@ describe("Given a recipesReducer", () => {
 
   describe("When it receives the current recipes state and a loadRecipes action with a recipes list", () => {
     test("Then it should return a new state with the current state data with the new recipes list", () => {
-      const newRecipes = recipeList(8);
+      const newRecipes = eightRecipes;
       const expectedProperty = "recipes";
 
       const newState = recipesReducer(
