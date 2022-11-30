@@ -70,7 +70,9 @@
     ]
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "@types/styled-components": "^5.1.26",
+    "fishery": "^2.2.2",
     "husky": "^8.0.0",
     "msw": "^0.49.0"
   }

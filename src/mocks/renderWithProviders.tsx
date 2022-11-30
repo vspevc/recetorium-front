@@ -8,6 +8,7 @@ import { uiReducer } from "../redux/features/uiSlice/uiSlice";
 import { ThemeProvider } from "styled-components";
 import theme from "../styles/theme";
 import GlobalStyle from "../styles/GlobalStyle";
+import { recipesReducer } from "../redux/features/recipesSlice/recipesSlice";
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
   preloadedState?: PreloadedState<RootState>;
@@ -21,6 +22,7 @@ export const renderWithProviders = (
     store = configureStore({
       reducer: {
         ui: uiReducer,
+        recipes: recipesReducer,
       },
       preloadedState,
     }),
