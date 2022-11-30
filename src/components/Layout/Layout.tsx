@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import NotFound from "../../pages/NotFound/NotFound";
 import RegisterUser from "../../pages/RegisterUser/RegisterUser";
+import { RecipeStructure } from "../../redux/features/recipesSlice/types";
 import paths from "../../utils/paths/paths";
 import Header from "../Header/Header";
 import RecipeCard from "../RecipeCard/RecipeCard";
-import { RecipeStructure } from "../RecipeCard/types";
 import LayoutStyled from "./LayoutStyled";
 
 const Layout = (): JSX.Element => {

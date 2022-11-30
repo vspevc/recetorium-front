@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { renderWithProviders } from "../../mocks/renderWithProviders";
+import { RecipeStructure } from "../../redux/features/recipesSlice/types";
 import RecipeCard from "./RecipeCard";
-import { RecipeStructure } from "./types";
 
 describe("Given a RecipeCard component", () => {
   const recipe: RecipeStructure = {
