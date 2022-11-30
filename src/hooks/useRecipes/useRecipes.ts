@@ -19,18 +19,11 @@ const useRecipes = () => {
 
       dispatch(loadRecipesActionCreator(recipes));
     } catch (error: unknown) {
-      let errorMessage =
-        "Ha habido un error al cargar la página, vuelva a intentarlo en unos minutos";
+      const axiosError = error as AxiosError;
 
-      if (error instanceof AxiosError) {
-        errorMessage = error.message;
+      let errorMessage = axiosError.message;
 
-        if (errorMessage !== "Network Error" && error.response) {
-          errorMessage = error.response.data.error;
-        }
-
-        errorMessage = apiMessageToSpanish(errorMessage);
-      }
+      errorMessage = apiMessageToSpanish(errorMessage);
 
       dispatch(
         showErrorModalActionCreator({
