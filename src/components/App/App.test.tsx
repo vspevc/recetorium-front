@@ -5,8 +5,8 @@ import { ModalStructure } from "../../redux/features/uiSlice/types";
 import App from "./App";
 
 describe("Given an App component", () => {
-  describe("When it's rendered", () => {
-    test("Then it should show", () => {
+  describe("When it's rendered and ui state modal isOpen with title 'Well done'", () => {
+    test("Then it should show a modal with title 'Well done'", () => {
       const expectedHeadingTitle = "Well done";
       const expectedHeadingLevel = 2;
       const modalIsOpen: ModalStructure = {
