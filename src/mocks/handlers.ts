@@ -29,6 +29,6 @@ export const handlers = [
     )
   ),
   rest.get(`${apiUrl}recipes/search`, (req, res) =>
-    res.networkError("Network Error")
+    res.networkError("404 page not found")
   ),
 ];

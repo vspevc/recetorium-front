@@ -1,4 +1,4 @@
-import RegisterUserData from "./types";
+import RegisterUserData, { ApiErrorResponse } from "./types";
 import { AxiosError } from "axios";
 import { useAppDispatch } from "../../redux/hooks";
 import {
@@ -24,17 +24,15 @@ const useUsers = () => {
         })
       );
     } catch (error: unknown) {
-      let errorMessage = "Ha habido un error en el registro";
+      const axiosError = error as AxiosError;
 
-      if (error instanceof AxiosError) {
-        errorMessage = error.message;
+      let errorMessage = axiosError.message;
 
-        if (errorMessage !== "Network Error" && error.response) {
-          errorMessage = error.response.data.error;
-        }
-
-        errorMessage = apiMessageToSpanish(errorMessage);
+      if (errorMessage !== "Network Error" && axiosError.response) {
+        errorMessage = (axiosError.response.data as ApiErrorResponse).error;
       }
+
+      errorMessage = apiMessageToSpanish(errorMessage);
 
       dispatch(
         showErrorModalActionCreator({

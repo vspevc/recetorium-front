@@ -5,6 +5,13 @@ export interface ModalStructure {
   content?: string;
 }
 
+export interface PaginationStructure {
+  currentPage: number;
+  totalPages: number;
+  previousPage: string | null;
+  nextPage: string | null;
+}
+
 export interface FeedbackModalPayload {
   title: string;
   content: string;
@@ -12,4 +19,5 @@ export interface FeedbackModalPayload {
 
 export interface UIState {
   modal: ModalStructure;
+  pagination: PaginationStructure;
 }

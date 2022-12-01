@@ -2,37 +2,66 @@ import { AxiosError } from "axios";
 import { useCallback } from "react";
 import { loadRecipesActionCreator } from "../../redux/features/recipesSlice/recipesSlice";
 import { RecipeStructure } from "../../redux/features/recipesSlice/types";
-import { showErrorModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import { PaginationStructure } from "../../redux/features/uiSlice/types";
+import {
+  loadPaginationActionCreator,
+  showErrorModalActionCreator,
+} from "../../redux/features/uiSlice/uiSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import recetoriumApi from "../../utils/api/recetoriumApi";
 import apiMessageToSpanish from "../../utils/api/translations/apiMessageToSpanish";
 
 const useRecipes = () => {
   const dispatch = useAppDispatch();
-  const apiConnection = recetoriumApi();
 
-  const loadRecipes = useCallback(async () => {
-    try {
-      const response = await apiConnection.get("recipes/search");
+  const loadRecipes = useCallback(
+    async (page?: string) => {
+      let path = "recipes/search";
+      let currentPage = 1;
 
-      const recipes: RecipeStructure[] = await response.data.recipes;
+      if (page) {
+        path = `${page}`;
+        currentPage = +new URL(page, "http://localhost").searchParams.get(
+          "page"
+        )!;
+      }
 
-      dispatch(loadRecipesActionCreator(recipes));
-    } catch (error: unknown) {
-      const axiosError = error as AxiosError;
+      try {
+        const response = await recetoriumApi().get(path);
 
-      let errorMessage = axiosError.message;
+        const {
+          previousPage,
+          nextPage,
+          totalPages,
+          recipes: recipesData,
+        } = await response.data;
+        const recipes: RecipeStructure[] = recipesData;
+        const paginationData: PaginationStructure = {
+          previousPage,
+          nextPage,
+          totalPages,
+          currentPage,
+        };
 
-      errorMessage = apiMessageToSpanish(errorMessage);
+        dispatch(loadRecipesActionCreator(recipes));
+        dispatch(loadPaginationActionCreator(paginationData));
+      } catch (error: unknown) {
+        const axiosError = error as AxiosError;
 
-      dispatch(
-        showErrorModalActionCreator({
-          title: "No se ha podido cargar el contenido.",
-          content: errorMessage,
-        })
-      );
-    }
-  }, [apiConnection, dispatch]);
+        let errorMessage = axiosError.message;
+
+        errorMessage = apiMessageToSpanish(errorMessage);
+
+        dispatch(
+          showErrorModalActionCreator({
+            title: "No se ha podido cargar el contenido.",
+            content: errorMessage,
+          })
+        );
+      }
+    },
+    [dispatch]
+  );
 
   return { loadRecipes };
 };
