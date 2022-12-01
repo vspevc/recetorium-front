@@ -2,6 +2,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../mocks/renderWithProviders";
 import { ModalStructure } from "../../redux/features/uiSlice/types";
+import { uiInitialState } from "../../redux/features/uiSlice/uiSlice";
 import Modal from "./Modal";
 
 describe("Given a Modal component", () => {
@@ -16,7 +17,7 @@ describe("Given a Modal component", () => {
     test("Then it should show a modal with a heading level 2 'Well done'", () => {
       renderWithProviders(<Modal />, {
         preloadedState: {
-          ui: { modal: modalContent },
+          ui: { ...uiInitialState, modal: modalContent },
           recipes: { recipes: [] },
         },
       });
@@ -33,7 +34,7 @@ describe("Given a Modal component", () => {
         const closeButtonText = "Salir";
         renderWithProviders(<Modal />, {
           preloadedState: {
-            ui: { modal: modalContent },
+            ui: { ...uiInitialState, modal: modalContent },
             recipes: { recipes: [] },
           },
         });
@@ -63,7 +64,7 @@ describe("Given a Modal component", () => {
 
       renderWithProviders(<Modal />, {
         preloadedState: {
-          ui: { modal: modalContent },
+          ui: { ...uiInitialState, modal: modalContent },
           recipes: { recipes: [] },
         },
       });

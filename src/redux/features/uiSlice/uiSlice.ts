@@ -1,12 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FeedbackModalPayload, UIState } from "./types";
+import { FeedbackModalPayload, PaginationStructure, UIState } from "./types";
 
-const uiInitialState: UIState = {
+export const uiInitialState: UIState = {
   modal: {
     isOpen: false,
     title: "",
     content: "",
     type: "default",
+  },
+  pagination: {
+    currentPage: 0,
+    totalPages: 0,
+    previousPage: null,
+    nextPage: null,
   },
 };
 
@@ -37,6 +43,13 @@ const uiSlice = createSlice({
         type: "default",
       },
     }),
+    loadPagination: (
+      currentState,
+      action: PayloadAction<PaginationStructure>
+    ) => ({
+      ...currentState,
+      pagination: action.payload,
+    }),
   },
 });
 
@@ -46,4 +59,5 @@ export const {
   showSuccessModal: showSuccessModalActionCreator,
   showErrorModal: showErrorModalActionCreator,
   closeModal: closeModalActionCreator,
+  loadPagination: loadPaginationActionCreator,
 } = uiSlice.actions;

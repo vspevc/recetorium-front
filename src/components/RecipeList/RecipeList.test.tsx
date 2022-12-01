@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { eightRecipes } from "../../factories/recipeFactory/recipeFactory";
 import { renderWithProviders } from "../../mocks/renderWithProviders";
-import { ModalStructure } from "../../redux/features/uiSlice/types";
+import { uiInitialState } from "../../redux/features/uiSlice/uiSlice";
 import RecipeList from "./RecipeList";
 
 describe("Given a RecipeList conponent", () => {
@@ -11,7 +11,7 @@ describe("Given a RecipeList conponent", () => {
 
       renderWithProviders(<RecipeList />, {
         preloadedState: {
-          ui: { modal: {} as ModalStructure },
+          ui: uiInitialState,
           recipes: { recipes: eightRecipes },
         },
       });

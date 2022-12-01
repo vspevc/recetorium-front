@@ -3,18 +3,12 @@ import {
   closeModalActionCreator,
   showErrorModalActionCreator,
   showSuccessModalActionCreator,
+  uiInitialState,
   uiReducer,
 } from "./uiSlice";
 
 describe("Given a uiReducer", () => {
-  const currentState: UIState = {
-    modal: {
-      isOpen: false,
-      title: "",
-      content: "",
-      type: "default",
-    },
-  };
+  const currentState: UIState = uiInitialState;
 
   describe("When it receives the current ui state and an unknown action", () => {
     test("Then it should return a new ui state with same values than current state", () => {

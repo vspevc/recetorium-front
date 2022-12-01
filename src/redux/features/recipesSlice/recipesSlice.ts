@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RecipesState, RecipeStructure } from "./types";
 
-const recipesInitialState: RecipesState = {
+export const recipesInitialState: RecipesState = {
   recipes: [],
 };
 

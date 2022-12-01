@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { eightRecipes } from "../../factories/recipeFactory/recipeFactory";
-import { renderWithProviders } from "../../mocks/renderWithProviders";
-import { ModalStructure } from "../../redux/features/uiSlice/types";
+import { renderWithProvidersAndRouter } from "../../mocks/renderWithProvidersAndRouer";
+import { uiInitialState } from "../../redux/features/uiSlice/uiSlice";
 import Home from "./Home";
 
 describe("Given a Home page", () => {
@@ -9,9 +9,9 @@ describe("Given a Home page", () => {
     test("Then it should show a lsit of recipes with 8 recipes cards", () => {
       const expectedHedingsLevel = 2;
 
-      renderWithProviders(<Home />, {
+      renderWithProvidersAndRouter(<Home />, {
         preloadedState: {
-          ui: { modal: {} as ModalStructure },
+          ui: uiInitialState,
           recipes: { recipes: eightRecipes },
         },
       });

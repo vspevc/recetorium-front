@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
 import { renderWithProvidersAndRouter } from "../../mocks/renderWithProvidersAndRouer";
 import { ModalStructure } from "../../redux/features/uiSlice/types";
+import { uiInitialState } from "../../redux/features/uiSlice/uiSlice";
 import App from "./App";
 
 describe("Given an App component", () => {
@@ -16,7 +17,7 @@ describe("Given an App component", () => {
 
       renderWithProvidersAndRouter(<App />, {
         preloadedState: {
-          ui: { modal: modalIsOpen },
+          ui: { ...uiInitialState, modal: modalIsOpen },
           recipes: { recipes: [] },
         },
       });
