@@ -13,7 +13,6 @@ import apiMessageToSpanish from "../../utils/api/translations/apiMessageToSpanis
 
 const useRecipes = () => {
   const dispatch = useAppDispatch();
-  const apiConnection = recetoriumApi();
 
   const loadRecipes = useCallback(
     async (page?: string) => {
@@ -28,7 +27,7 @@ const useRecipes = () => {
       }
 
       try {
-        const response = await apiConnection.get(path);
+        const response = await recetoriumApi().get(path);
 
         const {
           previousPage,

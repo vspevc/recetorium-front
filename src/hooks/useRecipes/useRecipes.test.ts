@@ -23,15 +23,16 @@ describe("Given a useRecipes custom hook", () => {
     });
   });
 
-  describe("When it's loadRecipes is invoked but have a network connection error", () => {
+  describe("When it's loadRecipes is invoked but the page does not exists", () => {
     test("Then it should call dispatch with show modal action with error cannot load data", async () => {
       const modalData: FeedbackModalPayload = {
         title: "No se ha podido cargar el contenido.",
         content: "Error de conexión, intentelo en unos minutos.",
       };
       const showModalAction = showErrorModalActionCreator(modalData);
+      const unknownPage = "recipes/search?page=900";
 
-      await result.current.loadRecipes();
+      await result.current.loadRecipes(unknownPage);
 
       expect(dispatchSpy).toHaveBeenCalledWith(showModalAction);
     });

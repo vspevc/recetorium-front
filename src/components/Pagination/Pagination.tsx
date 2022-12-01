@@ -12,10 +12,6 @@ const Pagination = (): JSX.Element => {
   const { loadRecipes } = useRecipes();
 
   const loadPage = (path: string) => {
-    if (!path) {
-      return;
-    }
-
     loadRecipes(path);
   };
 
@@ -25,6 +21,7 @@ const Pagination = (): JSX.Element => {
         action={() => {
           loadPage(previousPage!);
         }}
+        ariaLabel="Ir a la página anterior"
         options={{ variant: "small", disabled: previousPage ? false : true }}
       >
         <FontAwesomeIcon icon={solid("circle-chevron-left")} />
@@ -36,6 +33,7 @@ const Pagination = (): JSX.Element => {
         action={() => {
           loadPage(nextPage!);
         }}
+        ariaLabel="Ir a la siguiente página"
         options={{ variant: "small", disabled: nextPage! ? false : true }}
       >
         <FontAwesomeIcon icon={solid("circle-chevron-right")} />
