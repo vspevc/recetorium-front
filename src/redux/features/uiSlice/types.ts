@@ -20,4 +20,5 @@ export interface FeedbackModalPayload {
 export interface UIState {
   modal: ModalStructure;
   pagination: PaginationStructure;
+  isLoading: boolean;
 }
