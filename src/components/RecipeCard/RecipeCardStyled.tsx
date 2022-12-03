@@ -30,16 +30,19 @@ const RecipeCardStyled = styled.article`
   .recipe-card__info {
     display: flex;
     justify-content: space-between;
+    gap: ${(props) => props.theme.sizes.gap};
     padding: 15px;
   }
 
   .recipe-card__tags {
     display: flex;
+    flex-wrap: wrap;
     gap: 5px;
   }
 
   .tag {
     padding: 3px 15px;
+    max-height: 32px;
     border: 1px solid ${(props) => props.theme.color.inkColor.base};
     border-radius: 50px;
     background-color: ${(props) => props.theme.color.inkColor.light};
@@ -71,8 +74,10 @@ const RecipeCardStyled = styled.article`
   }
 
   .recipe-card__time {
+    flex-grow: 2;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 5px;
   }
 `;
