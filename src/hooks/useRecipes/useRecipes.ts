@@ -4,8 +4,10 @@ import { loadRecipesActionCreator } from "../../redux/features/recipesSlice/reci
 import { RecipeStructure } from "../../redux/features/recipesSlice/types";
 import { PaginationStructure } from "../../redux/features/uiSlice/types";
 import {
+  hideLoadingActionCreator,
   loadPaginationActionCreator,
   showErrorModalActionCreator,
+  showLoadingActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import recetoriumApi from "../../utils/api/recetoriumApi";
@@ -16,6 +18,8 @@ const useRecipes = () => {
 
   const loadRecipes = useCallback(
     async (page?: string) => {
+      dispatch(showLoadingActionCreator());
+
       let path = "recipes/search";
       let currentPage = 1;
 
@@ -45,6 +49,7 @@ const useRecipes = () => {
 
         dispatch(loadRecipesActionCreator(recipes));
         dispatch(loadPaginationActionCreator(paginationData));
+        dispatch(hideLoadingActionCreator());
       } catch (error: unknown) {
         const axiosError = error as AxiosError;
 
@@ -58,6 +63,7 @@ const useRecipes = () => {
             content: errorMessage,
           })
         );
+        dispatch(hideLoadingActionCreator());
       }
     },
     [dispatch]

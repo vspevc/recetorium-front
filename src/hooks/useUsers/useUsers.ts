@@ -2,7 +2,9 @@ import RegisterUserData, { ApiErrorResponse } from "./types";
 import { AxiosError } from "axios";
 import { useAppDispatch } from "../../redux/hooks";
 import {
+  hideLoadingActionCreator,
   showErrorModalActionCreator,
+  showLoadingActionCreator,
   showSuccessModalActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
 import recetoriumApi from "../../utils/api/recetoriumApi";
@@ -10,11 +12,12 @@ import apiMessageToSpanish from "../../utils/api/translations/apiMessageToSpanis
 
 const useUsers = () => {
   const dispatch = useAppDispatch();
-  const apiConnection = recetoriumApi();
 
   const registerUser = async (registerUserData: RegisterUserData) => {
+    dispatch(showLoadingActionCreator());
+
     try {
-      await apiConnection.post("users/register", registerUserData);
+      await recetoriumApi().post("users/register", registerUserData);
 
       dispatch(
         showSuccessModalActionCreator({
@@ -23,6 +26,7 @@ const useUsers = () => {
             "Enhorabuena ahora puedes acceder a todo el contenido entrando con tu nuevo usuario.",
         })
       );
+      dispatch(hideLoadingActionCreator());
     } catch (error: unknown) {
       const axiosError = error as AxiosError;
 
@@ -40,6 +44,7 @@ const useUsers = () => {
           content: errorMessage,
         })
       );
+      dispatch(hideLoadingActionCreator());
     }
   };
 
