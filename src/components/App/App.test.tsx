@@ -29,4 +29,21 @@ describe("Given an App component", () => {
       expect(expectedModalHeading).toBeInTheDocument();
     });
   });
+
+  describe("When it's rendered and ui state loading true", () => {
+    test("Then it should show a loading screen with label 'Cargando, por favor espere.'", () => {
+      const expectedLabel = /cargando, por favor espere./i;
+      const isLoading = true;
+
+      renderWithProvidersAndRouter(<App />, {
+        preloadedState: {
+          ui: { ...uiInitialState, isLoading },
+          recipes: { recipes: [] },
+        },
+      });
+      const expectedLoading = screen.queryByLabelText(expectedLabel);
+
+      expect(expectedLoading).toBeInTheDocument();
+    });
+  });
 });
