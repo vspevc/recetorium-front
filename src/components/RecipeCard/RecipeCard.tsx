@@ -1,5 +1,6 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import RecipeTypeTag from "../RecipeTypeTag/RecipeTypeTag";
 import RecipeCardStyled from "./RecipeCardStyled";
 import RecipeCardProps from "./types";
 
@@ -20,21 +21,9 @@ const RecipeCard = ({ recipe }: RecipeCardProps): JSX.Element => {
       </header>
       <div className="recipe-card__info">
         <div className="recipe-card__tags">
-          {types.some((type) => type.name === "desayuno") && (
-            <span className="tag tag__desayuno">desayuno</span>
-          )}
-          {types.some((type) => type.name === "almuerzo") && (
-            <span className="tag tag__almuerzo">almuerzo</span>
-          )}
-          {types.some((type) => type.name === "comida") && (
-            <span className="tag tag__comida">comida</span>
-          )}
-          {types.some((type) => type.name === "cena") && (
-            <span className="tag tag__cena">cena</span>
-          )}
-          {types.some((type) => type.name === "postre") && (
-            <span className="tag tag__postre">postre</span>
-          )}
+          {types.map((type, index) => (
+            <RecipeTypeTag key={index} name={type.name} />
+          ))}
         </div>
         <div className="recipe-card__time">
           <FontAwesomeIcon
