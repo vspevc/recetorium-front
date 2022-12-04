@@ -3,7 +3,7 @@ import toSpanish from "./englishToSpanish.json";
 const apiMessageToSpanish = (message: string): string => {
   type translations = typeof toSpanish;
 
-  if (/^"username"|^"password"|^"paswordConfirm"|^"email"/.test(message)) {
+  if (/^(")[/w +]?/.test(message)) {
     const validationMessages = message
       .split(", ")
       .map(

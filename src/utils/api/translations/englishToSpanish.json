@@ -1,8 +1,16 @@
 {
   "Network Error": "Error de conexión, intentelo en unos minutos.",
+
   "User already exists.": "Usuario ya registrado.",
   "username": "El nombre de usuario no cumple las condiciones.",
   "password": "La contraseña no cumple las condiciones.",
   "passwordConfirm": "Las contraseñas no coinciden.",
-  "email": "El Email no es un Email válido."
+  "email": "El Email no es un Email válido.",
+
+  "name": "El nombre de la receta no cumple las condiciones",
+  "types": "El tipo de comida no puede estar vacío",
+  "ingredients": "Los ingredientes no pueden estar vacíos",
+  "steps": "Los pasos no pueden estar vacíos",
+  "elaborationTime": "El tiempo de elaboración no cumple las condiciones",
+  "image": "La imagen no cumple las condiciones"
 }
