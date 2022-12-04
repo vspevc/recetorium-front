@@ -27,7 +27,7 @@ const postre = css`
 `;
 
 const RecipeTypeTagStyled = styled.span<RecipeTypeTagStyledProps>`
-  padding: 3px 15px;
+  padding: 4px 15px;
   max-height: 32px;
   border: 1px solid ${(props) => props.theme.color.inkColor.base};
   border-radius: 50px;
