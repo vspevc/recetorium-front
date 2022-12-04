@@ -12,15 +12,18 @@ interface Step {
   order: number;
 }
 
-export interface RecipeStructure {
-  id: string;
+export interface RecipeMainData {
   name: string;
-  urlSlug: string;
   author: string;
   types: Type[];
   ingredients: Ingredient[];
   steps: Step[];
   elaborationTime: string;
+}
+
+export interface RecipeStructure extends RecipeMainData {
+  id: string;
+  urlSlug: string;
   image: string;
 }
 

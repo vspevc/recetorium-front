@@ -8,10 +8,13 @@ import {
   loadPaginationActionCreator,
   showErrorModalActionCreator,
   showLoadingActionCreator,
+  showSuccessModalActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import recetoriumApi from "../../utils/api/recetoriumApi";
 import apiMessageToSpanish from "../../utils/api/translations/apiMessageToSpanish";
+import { ApiErrorResponse } from "../useUsers/types";
+import RecipeFormData from "./types";
 
 const useRecipes = () => {
   const dispatch = useAppDispatch();
@@ -69,7 +72,44 @@ const useRecipes = () => {
     [dispatch]
   );
 
-  return { loadRecipes };
+  const createRecipe = useCallback(
+    async (recipeFormData: RecipeFormData) => {
+      dispatch(showLoadingActionCreator());
+
+      try {
+        await recetoriumApi().post("recipes/create", recipeFormData);
+
+        dispatch(
+          showSuccessModalActionCreator({
+            title: "Receta creada correctamente",
+            content: "Tu receta ya está disponible.",
+          })
+        );
+        dispatch(hideLoadingActionCreator());
+      } catch (error: unknown) {
+        const axiosError = error as AxiosError;
+
+        let errorMessage = axiosError.message;
+
+        if (errorMessage !== "Network Error" && axiosError.response) {
+          errorMessage = (axiosError.response.data as ApiErrorResponse).error;
+        }
+
+        errorMessage = apiMessageToSpanish(errorMessage);
+
+        dispatch(
+          showErrorModalActionCreator({
+            title: "Error al intentar crear la receta",
+            content: errorMessage,
+          })
+        );
+        dispatch(hideLoadingActionCreator());
+      }
+    },
+    [dispatch]
+  );
+
+  return { loadRecipes, createRecipe };
 };
 
 export default useRecipes;
