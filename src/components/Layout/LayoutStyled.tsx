@@ -11,6 +11,10 @@ const LayoutStyled = styled.div`
       padding: ${(props) =>
         `${props.theme.sizes.mainElementVerticalPadding} ${props.theme.sizes.desktopHorizontalPadding}`};
     }
+
+    .delete {
+      color: ${(props) => props.theme.color.primaryColor.dark};
+    }
   }
 `;
 
