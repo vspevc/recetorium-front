@@ -31,4 +31,17 @@ export const handlers = [
   rest.get(`${apiUrl}recipes/search`, (req, res) =>
     res.networkError("404 page not found")
   ),
+
+  rest.post(`${apiUrl}recipes/create`, (req, res, ctx) =>
+    res.once(ctx.status(201))
+  ),
+  rest.post(`${apiUrl}recipes/create`, (req, res, ctx) =>
+    res.once(
+      ctx.status(400),
+      ctx.json({ error: '"name" is not allowed to be empty' })
+    )
+  ),
+  rest.post(`${apiUrl}recipes/create`, (req, res, ctx) =>
+    res.networkError("Network Error")
+  ),
 ];
