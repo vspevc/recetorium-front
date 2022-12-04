@@ -40,39 +40,6 @@ const RecipeCardStyled = styled.article`
     gap: 5px;
   }
 
-  .tag {
-    padding: 3px 15px;
-    max-height: 32px;
-    border: 1px solid ${(props) => props.theme.color.inkColor.base};
-    border-radius: 50px;
-    background-color: ${(props) => props.theme.color.inkColor.light};
-  }
-
-  .tag__desayuno {
-    border-color: ${(props) => props.theme.color.yellowColor.base};
-    background-color: ${(props) => props.theme.color.yellowColor.light};
-  }
-
-  .tag__almuerzo {
-    border-color: ${(props) => props.theme.color.successColor.base};
-    background-color: ${(props) => props.theme.color.successColor.light};
-  }
-
-  .tag__comida {
-    border-color: ${(props) => props.theme.color.blueColor.base};
-    background-color: ${(props) => props.theme.color.blueColor.light};
-  }
-
-  .tag__cena {
-    border-color: ${(props) => props.theme.color.secondaryColor.darkest};
-    background-color: ${(props) => props.theme.color.secondaryColor.base};
-  }
-
-  .tag__postre {
-    border-color: ${(props) => props.theme.color.primaryColor.dark};
-    background-color: ${(props) => props.theme.color.primaryColor.light};
-  }
-
   .recipe-card__time {
     flex-grow: 2;
     display: flex;
