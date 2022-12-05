@@ -9,12 +9,12 @@ afterEach(() => {
 });
 
 describe("Given a RecipeIngredientsInput component", () => {
-  const initialIngredients: Ingredient[] = [
-    { name: "Tomato", quantity: "1 kg" },
-  ];
-  const callback = jest.fn();
   const ingredientName = "Tomato";
   const ingredientQuantity = "1 kg";
+  const initialIngredients: Ingredient[] = [
+    { name: ingredientName, quantity: ingredientQuantity },
+  ];
+  const callback = jest.fn();
   const addButtonText = /añadir/i;
   const ingredientNameInputLabel = /nombre del ingrediente/i;
   const ingredientQuantityInputLabel = /cantidad/i;
@@ -70,7 +70,7 @@ describe("Given a RecipeIngredientsInput component", () => {
   });
 
   describe("When it's rendered with ingredient name 'Tomato', quantity '1 kg' and user clicks on it's delete button", () => {
-    test("Then it should call callback with an empty array", async () => {
+    test("Then it should call callback with no ingredients", async () => {
       const deleteButtonLabel = /eliminar/i;
       renderWithProviders(
         <RecipeIngredientsInput
