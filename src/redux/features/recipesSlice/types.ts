@@ -2,12 +2,12 @@ export interface Type {
   name: "desayuno" | "almuerzo" | "comida" | "cena" | "postre";
 }
 
-interface Ingredient {
+export interface Ingredient {
   name: string;
   quantity: string;
 }
 
-interface Step {
+export interface Step {
   step: string;
   order: number;
 }
