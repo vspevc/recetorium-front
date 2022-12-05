@@ -54,23 +54,25 @@ describe("Given a RecipeStepsInput component", () => {
     });
   });
 
-  describe("When it's rendered with step 'Chop vegetables' order '1' and user click it's delete button", () => {
-    test("Then it should call callback with no steps", async () => {
+  describe("When it's rendered with step 'Chop vegetables' order 1, step 'Boil water' order 2 and user click 'Boil water' delete button", () => {
+    test("Then it should call callback with step 'Chop vegetables' order 1", async () => {
+      const boilWaterStep: Step = { step: "Boil water", order: 2 };
+      const steps = [...initialSteps, boilWaterStep];
       const deleteButtonText = /eliminar/i;
       renderWithProviders(
-        <RecipeStepsInput steps={initialSteps} callback={callback} />
+        <RecipeStepsInput steps={steps} callback={callback} />
       );
 
-      const deleteButton = screen.queryByRole("button", {
+      const deleteButton = screen.queryAllByRole("button", {
         name: deleteButtonText,
-      }) as HTMLButtonElement;
-      await userEvent.click(deleteButton);
+      }) as HTMLButtonElement[];
+      await userEvent.click(deleteButton[1]);
 
-      expect(callback).toHaveBeenCalledWith([]);
+      expect(callback).toHaveBeenCalledWith(initialSteps);
     });
   });
 
-  describe("When it's rendered with step 'Chop vegetables' order '1', user click it's edit button and update step", () => {
+  describe("When it's rendered with step 'Chop vegetables' order 1, user click it's edit button and update step", () => {
     test("Then it should call callback with step 'Chop vegetables and boil water' and order 1", async () => {
       const stepAdition = " and boil water";
       const expectedSteps: Step[] = [

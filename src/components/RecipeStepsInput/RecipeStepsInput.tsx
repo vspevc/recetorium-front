@@ -55,10 +55,13 @@ const RecipeStepsInput = ({
   const deleteStep = (index: number) => {
     const newSteps = recipeSteps
       .filter((step, position) => position !== index)
-      .map((step, position) => ({
-        step: step.step,
-        order: (step.order = position + 1),
-      }));
+      .map((step, position) => {
+        const newOrder = position + 1;
+        return {
+          step: step.step,
+          order: newOrder,
+        };
+      });
 
     setrecipeSteps(newSteps);
   };
