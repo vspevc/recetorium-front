@@ -34,6 +34,10 @@ const GlobalStyle = createGlobalStyle`
     font-size: ${(props) => props.theme.font.mediumFontSize};
   }
 
+  h3 {
+    font-size: ${(props) => props.theme.font.mainFontSize};
+  }
+
   a {
     font-weight: ${(props) => props.theme.font.mediumFontWeight};
     text-decoration: none;
