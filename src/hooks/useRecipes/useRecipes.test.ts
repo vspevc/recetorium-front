@@ -60,13 +60,8 @@ describe("Given a useRecipes custom hook", () => {
     elaborationTime,
   };
 
-  describe("When it's createRecipe is invoked with valid recipe with name 'Tomato soup' and image 'tomato-soup.jpg'", () => {
+  describe("When it's createRecipe is invoked with valid recipe with name 'Tomato soup'", () => {
     test("Then it should call dispatch with show modal action with recipe create success", async () => {
-      const imageName = "tomato-soup.jpg";
-      const image = new File(["(⌐□_□)"], imageName, {
-        type: "image/jpeg",
-      });
-      recipeFormData.image = image;
       const modalData: FeedbackModalPayload = {
         title: "Receta creada correctamente",
         content: "Tu receta ya está disponible.",

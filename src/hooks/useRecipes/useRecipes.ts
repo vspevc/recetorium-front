@@ -76,8 +76,17 @@ const useRecipes = () => {
     async (recipeFormData: RecipeFormData) => {
       dispatch(showLoadingActionCreator());
 
+      const recipeRequestData: RecipeFormData = {
+        ...recipeFormData,
+        author: "63851ce5edfc297f0b0060c8",
+      };
+
       try {
-        await recetoriumApi().post("recipes/create", recipeFormData);
+        await recetoriumApi().post(`recipes/create`, recipeRequestData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
         dispatch(
           showSuccessModalActionCreator({
@@ -88,7 +97,6 @@ const useRecipes = () => {
         dispatch(hideLoadingActionCreator());
       } catch (error: unknown) {
         const axiosError = error as AxiosError;
-
         let errorMessage = axiosError.message;
 
         if (errorMessage !== "Network Error" && axiosError.response) {

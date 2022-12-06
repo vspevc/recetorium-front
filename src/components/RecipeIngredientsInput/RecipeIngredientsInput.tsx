@@ -57,7 +57,9 @@ const RecipeIngredientsInput = ({
     );
   };
 
-  useEffect(() => callback(recipeIngredients), [callback, recipeIngredients]);
+  useEffect(() => {
+    callback(recipeIngredients);
+  }, [callback, recipeIngredients]);
 
   return (
     <RecipeIngredientsInputStyled>
@@ -79,7 +81,6 @@ const RecipeIngredientsInput = ({
           id="ingredientName"
           labelText="Nombre del ingrediente"
           inputValue={ingredientData.name}
-          required={true}
           handleValue={handleValue}
         />
 
@@ -88,7 +89,6 @@ const RecipeIngredientsInput = ({
             id="quantity"
             labelText="Cantidad"
             inputValue={ingredientData.quantity}
-            required={true}
             captionText="Ejemplo: 1, 100gr, 10ml..."
             handleValue={handleValue}
           />
@@ -98,11 +98,16 @@ const RecipeIngredientsInput = ({
               className="ingredients-input__add"
               ariaLabel="Editar ingrediente"
               action={updateIngredient}
+              options={{ type: "button" }}
             >
               Editar
             </Button>
           ) : (
-            <Button className="ingredients-input__add" action={addIngredient}>
+            <Button
+              className="ingredients-input__add"
+              action={addIngredient}
+              options={{ type: "button" }}
+            >
               Añadir
             </Button>
           )}
