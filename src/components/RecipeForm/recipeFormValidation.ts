@@ -3,7 +3,7 @@ import RecipeFormData from "../../hooks/useRecipes/types";
 
 const registerFormSchema = Joi.object({
   name: Joi.string().min(2).required(),
-  author: Joi.string().required(),
+  author: Joi.allow(),
   types: Joi.array()
     .items(
       Joi.object({
