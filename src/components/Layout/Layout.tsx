@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import CreateRecipe from "../../pages/CreateRecipe/CreateRecipe";
 import Home from "../../pages/Home/Home";
 import NotFound from "../../pages/NotFound/NotFound";
 import RegisterUser from "../../pages/RegisterUser/RegisterUser";
@@ -14,6 +15,7 @@ const Layout = (): JSX.Element => {
         <Routes>
           <Route path={paths.root} element={<Home />} />
           <Route path={paths.registerUser} element={<RegisterUser />} />
+          <Route path={paths.createRecipe} element={<CreateRecipe />} />
           <Route path={paths.notFound} element={<NotFound />} />
         </Routes>
       </main>

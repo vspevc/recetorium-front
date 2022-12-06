@@ -71,6 +71,7 @@ const RecipeForm = ({
       ingredients: ingredientsFormData,
       steps: stepsFormData,
     };
+
     try {
       await recipeFormValidator(formData);
 
