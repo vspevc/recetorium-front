@@ -22,7 +22,7 @@ describe("Given a RecipeIngredientsInput component", () => {
   describe("When it's rendered", () => {
     test("Then it should show a heading level 3 with 'Ingredients'", async () => {
       const expectedHeadingText = /ingredientes/i;
-      const expectedHeadingLevel = 3;
+      const expectedHeadingLevel = 2;
 
       renderWithProviders(
         <RecipeIngredientsInput

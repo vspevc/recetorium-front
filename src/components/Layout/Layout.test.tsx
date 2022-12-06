@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { renderWithProviders } from "../../mocks/renderWithProviders";
 import paths from "../../utils/paths/paths";
@@ -6,7 +6,7 @@ import Layout from "./Layout";
 
 describe("Given a Layout component", () => {
   describe("When it's rendered with path '/usuario/registro'", () => {
-    test("Then it should show the register user page", () => {
+    test("Then it should show the register user page", async () => {
       const registerUserPath = paths.registerUser;
       const expectedHeadingText = /registrarse es gratis/i;
       const expectedHeadingLevel = 1;
@@ -17,12 +17,37 @@ describe("Given a Layout component", () => {
         </MemoryRouter>
       );
 
-      const expectedHeading = screen.queryByRole("heading", {
-        name: expectedHeadingText,
-        level: expectedHeadingLevel,
-      });
+      await waitFor(() => {
+        const expectedHeading = screen.queryByRole("heading", {
+          name: expectedHeadingText,
+          level: expectedHeadingLevel,
+        });
 
-      expect(expectedHeading).toBeInTheDocument();
+        expect(expectedHeading).toBeInTheDocument();
+      });
+    });
+  });
+
+  describe("When it's rendered with path '/recetas/crear'", () => {
+    test("Then it should show the create recipe page", async () => {
+      const createRecipePath = paths.createRecipe;
+      const expectedHeadingText = /nueva receta/i;
+      const expectedHeadingLevel = 1;
+
+      renderWithProviders(
+        <MemoryRouter initialEntries={[createRecipePath]}>
+          <Layout />
+        </MemoryRouter>
+      );
+
+      await waitFor(() => {
+        const expectedHeading = screen.queryByRole("heading", {
+          name: expectedHeadingText,
+          level: expectedHeadingLevel,
+        });
+
+        expect(expectedHeading).toBeInTheDocument();
+      });
     });
   });
 });

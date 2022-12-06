@@ -18,7 +18,7 @@ describe("Given a RecipeStepsInput component", () => {
   describe("When it's rendered", () => {
     test("Then it should show a heading level 3 with 'Paso a paso'", async () => {
       const expectedHeadingText = /paso a paso/i;
-      const expectedHeadingLevel = 3;
+      const expectedHeadingLevel = 2;
       const addStepButtonText = /añadir paso/i;
 
       renderWithProviders(<RecipeStepsInput steps={[]} callback={callback} />);

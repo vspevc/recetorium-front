@@ -45,10 +45,10 @@ const MainNavigation = (): JSX.Element => {
         <li>
           <NavLink
             onClick={closeMenu}
-            to={paths.root}
+            to={paths.createRecipe}
             className="main-navigation__link"
           >
-            Login
+            Crear Receta
           </NavLink>
         </li>
         <li>

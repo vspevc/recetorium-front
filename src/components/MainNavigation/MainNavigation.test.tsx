@@ -31,19 +31,19 @@ describe("Given a MainNavigation component", () => {
     });
   });
 
-  describe("When it's rendered and user clicks on 'login' navigation link", () => {
+  describe("When it's rendered and user clicks on 'createRecipe' navigation link", () => {
     test("Then it should hide the list of links", async () => {
-      const loginLinkText = /login/i;
+      const createRecipeLinkText = /crear receta/i;
       renderWithProvidersAndRouter(<MainNavigation />);
       const openMenuButton = screen.queryByRole("button", {
         name: buttonAriaLabel,
       }) as HTMLButtonElement;
       await userEvent.click(openMenuButton);
 
-      const loginLink = screen.queryByRole("link", {
-        name: loginLinkText,
+      const createRecipeLink = screen.queryByRole("link", {
+        name: createRecipeLinkText,
       }) as HTMLAnchorElement;
-      await userEvent.click(loginLink);
+      await userEvent.click(createRecipeLink);
       const expectedLinkList = screen.queryByRole("list");
 
       expect(expectedLinkList).not.toBeInTheDocument();

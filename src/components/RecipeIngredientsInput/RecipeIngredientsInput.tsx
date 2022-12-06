@@ -63,7 +63,7 @@ const RecipeIngredientsInput = ({
 
   return (
     <RecipeIngredientsInputStyled>
-      <h3>Ingredientes</h3>
+      <h2>Ingredientes</h2>
 
       <div className="ingredients-input">
         {recipeIngredients.map((ingredient, index) => (
