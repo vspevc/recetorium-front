@@ -60,6 +60,32 @@ describe("Given a useRecipes custom hook", () => {
     elaborationTime,
   };
 
+  describe("When it's createRecipe is invoked with valid recipe with name 'Tomato soup' and with image 'tomato-soup.jpg'", () => {
+    test("Then it should call dispatch with show modal action with recipe create success", async () => {
+      const image = new File(["(0^0¬)"], "tomato-soup.jpg", {
+        type: "image/jpeg",
+      });
+      const recipeFormData: RecipeFormData = {
+        name,
+        author,
+        types,
+        ingredients,
+        steps,
+        elaborationTime,
+        image,
+      };
+      const modalData: FeedbackModalPayload = {
+        title: "Receta creada correctamente",
+        content: "Tu receta ya está disponible.",
+      };
+      const showModalAction = showSuccessModalActionCreator(modalData);
+
+      await result.current.createRecipe(recipeFormData);
+
+      expect(dispatchSpy).toHaveBeenCalledWith(showModalAction);
+    });
+  });
+
   describe("When it's createRecipe is invoked with valid recipe with name 'Tomato soup'", () => {
     test("Then it should call dispatch with show modal action with recipe create success", async () => {
       const modalData: FeedbackModalPayload = {
@@ -89,7 +115,7 @@ describe("Given a useRecipes custom hook", () => {
     });
   });
 
-  describe("When it's registerUser is invoked with valid user but have a network connection error", () => {
+  describe("When it's createRecipe is invoked with valid recipe but have a network connection error", () => {
     test("Then it should call dispatch with show modal action with error register data", async () => {
       const modalData: FeedbackModalPayload = {
         title: "Error al intentar crear la receta",

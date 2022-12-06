@@ -36,6 +36,9 @@ export const handlers = [
     res.once(ctx.status(201))
   ),
   rest.post(`${apiUrl}recipes/create`, (req, res, ctx) =>
+    res.once(ctx.status(201))
+  ),
+  rest.post(`${apiUrl}recipes/create`, (req, res, ctx) =>
     res.once(
       ctx.status(400),
       ctx.json({ error: '"name" is not allowed to be empty' })
