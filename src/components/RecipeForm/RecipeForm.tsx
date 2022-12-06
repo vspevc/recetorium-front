@@ -81,11 +81,11 @@ const RecipeForm = ({
         (currentValue, inputError) => ({ ...currentValue, [inputError]: true }),
         {}
       );
-      setFormErrors({ ...formErrors, ...errors });
-
       const translatedErrors = apiMessageToSpanish(
         errorMessages.replaceAll(". ", ", ")
       );
+
+      setFormErrors({ ...formErrors, ...errors });
       dispatch(
         showErrorModalActionCreator({
           title: "Error al intentar crear Receta",
