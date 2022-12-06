@@ -76,10 +76,35 @@ const useRecipes = () => {
     async (recipeFormData: RecipeFormData) => {
       dispatch(showLoadingActionCreator());
 
-      const recipeRequestData: RecipeFormData = {
-        ...recipeFormData,
-        author: "63851ce5edfc297f0b0060c8",
-      };
+      const { name, types, elaborationTime, image, ingredients, steps } =
+        recipeFormData;
+      const recipeRequestData = new FormData();
+      recipeRequestData.append("author", "63851ce5edfc297f0b0060c8");
+      recipeRequestData.append("name", name);
+      recipeRequestData.append("elaborationTime", elaborationTime);
+      if (image) {
+        recipeRequestData.append("image", image);
+      }
+      types.forEach((type, index) => {
+        recipeRequestData.append(`types[${index}][name]`, type.name);
+      });
+      ingredients.forEach((ingredient, index) => {
+        recipeRequestData.append(
+          `ingredients[${index}][name]`,
+          ingredient.name
+        );
+        recipeRequestData.append(
+          `ingredients[${index}][quantity]`,
+          ingredient.quantity
+        );
+      });
+      steps.forEach((step, index) => {
+        recipeRequestData.append(`steps[${index}][step]`, step.step);
+        recipeRequestData.append(
+          `steps[${index}][order]`,
+          step.order.toString()
+        );
+      });
 
       try {
         await recetoriumApi().post(`recipes/create`, recipeRequestData, {

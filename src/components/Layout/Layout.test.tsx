@@ -50,4 +50,27 @@ describe("Given a Layout component", () => {
       });
     });
   });
+
+  describe("When it's rendered with path '/not/konwn'", () => {
+    test("Then it should show the not found page", async () => {
+      const notFoundPath = "/not/konwn";
+      const expectedHeadingText = /página no encontrada/i;
+      const expectedHeadingLevel = 1;
+
+      renderWithProviders(
+        <MemoryRouter initialEntries={[notFoundPath]}>
+          <Layout />
+        </MemoryRouter>
+      );
+
+      await waitFor(() => {
+        const expectedHeading = screen.queryByRole("heading", {
+          name: expectedHeadingText,
+          level: expectedHeadingLevel,
+        });
+
+        expect(expectedHeading).toBeInTheDocument();
+      });
+    });
+  });
 });
