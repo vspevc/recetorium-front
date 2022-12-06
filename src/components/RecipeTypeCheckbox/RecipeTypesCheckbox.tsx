@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Type } from "../../redux/features/recipesSlice/types";
 import RecipeTypeTag from "../RecipeTypeTag/RecipeTypeTag";
 import RecipeTypesCheckboxStyled from "./RecipeTypesCheckboxStyled";
@@ -35,7 +35,9 @@ const RecipeTypesCheckbox = ({
     }
   };
 
-  callback(recipeTypes);
+  useEffect(() => {
+    callback(recipeTypes);
+  }, [callback, recipeTypes]);
 
   return (
     <RecipeTypesCheckboxStyled>

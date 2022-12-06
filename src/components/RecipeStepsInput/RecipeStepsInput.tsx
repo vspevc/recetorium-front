@@ -66,7 +66,9 @@ const RecipeStepsInput = ({
     setrecipeSteps(newSteps);
   };
 
-  useEffect(() => callback(recipeSteps), [callback, recipeSteps]);
+  useEffect(() => {
+    callback(recipeSteps);
+  }, [callback, recipeSteps]);
 
   return (
     <RecipeStepsInputStyled>
@@ -102,11 +104,19 @@ const RecipeStepsInput = ({
         />
 
         {editMode.isEdit ? (
-          <Button className="steps-input__add" action={updateStep}>
+          <Button
+            className="steps-input__add"
+            action={updateStep}
+            options={{ type: "button" }}
+          >
             Editar paso
           </Button>
         ) : (
-          <Button className="steps-input__add" action={addStep}>
+          <Button
+            className="steps-input__add"
+            action={addStep}
+            options={{ type: "button" }}
+          >
             Añadir paso
           </Button>
         )}

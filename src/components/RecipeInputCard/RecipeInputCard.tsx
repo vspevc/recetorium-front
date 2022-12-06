@@ -23,14 +23,14 @@ const RecipeInputCard = ({
         <Button
           ariaLabel="Editar"
           action={editingData}
-          options={{ variant: "small" }}
+          options={{ variant: "small", type: "button" }}
         >
           <FontAwesomeIcon icon={regular("pen-to-square")} />
         </Button>
         <Button
           ariaLabel="Eliminar"
           action={deletingData}
-          options={{ variant: "small" }}
+          options={{ variant: "small", type: "button" }}
         >
           <FontAwesomeIcon className="delete" icon={solid("trash-can")} />
         </Button>
