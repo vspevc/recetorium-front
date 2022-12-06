@@ -15,7 +15,7 @@ const CreateRecipe = (): JSX.Element => {
 
   return (
     <>
-      <h2>Nueva Receta</h2>
+      <h1>Nueva Receta</h1>
 
       <RecipeForm
         type="create"

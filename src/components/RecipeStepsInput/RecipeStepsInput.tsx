@@ -72,7 +72,7 @@ const RecipeStepsInput = ({
 
   return (
     <RecipeStepsInputStyled>
-      <h3>Paso a paso</h3>
+      <h2>Paso a paso</h2>
 
       <div className="steps-input">
         {recipeSteps.map((step, index) => (

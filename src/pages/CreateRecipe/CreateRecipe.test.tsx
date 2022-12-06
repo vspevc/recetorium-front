@@ -6,7 +6,7 @@ describe("Given a CreateRecipe page", () => {
   describe("When it's rendered", () => {
     test("Then it should show a heading level 2 with text 'Nueva Receta'", () => {
       const expectedHeadingText = /nueva receta/i;
-      const expectedHeadingLevel = 2;
+      const expectedHeadingLevel = 1;
 
       renderWithProviders(<CreateRecipe />);
       const expectedHeading = screen.queryByRole("heading", {
