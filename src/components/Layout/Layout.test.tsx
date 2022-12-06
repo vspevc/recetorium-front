@@ -8,21 +8,16 @@ describe("Given a Layout component", () => {
   describe("When it's rendered with path '/usuario/registro'", () => {
     test("Then it should show the register user page", () => {
       const registerUserPath = paths.registerUser;
-      const expectedHeadingText = /registrarse es gratis/i;
-      const expectedHeadingLevel = 1;
+      const loadingLabel = /cargando, por favor espere./i;
 
       renderWithProviders(
         <MemoryRouter initialEntries={[registerUserPath]}>
           <Layout />
         </MemoryRouter>
       );
+      const expectedLoading = screen.queryByLabelText(loadingLabel);
 
-      const expectedHeading = screen.queryByRole("heading", {
-        name: expectedHeadingText,
-        level: expectedHeadingLevel,
-      });
-
-      expect(expectedHeading).toBeInTheDocument();
+      expect(expectedLoading).toBeInTheDocument();
     });
   });
 });
