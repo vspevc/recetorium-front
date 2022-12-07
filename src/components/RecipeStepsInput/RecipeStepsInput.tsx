@@ -77,7 +77,7 @@ const RecipeStepsInput = ({
       <div className="steps-input">
         {recipeSteps.map((step, index) => (
           <RecipeInputCard
-            key={index}
+            key={`${index}^${step.step}`}
             prefix={step.order.toString()}
             body={step.step}
             index={index}
