@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { eightRecipes } from "../../factories/recipeFactory/recipeFactory";
-import { renderWithProviders } from "../../mocks/renderWithProviders";
+import { renderWithProvidersAndRouter } from "../../mocks/renderWithProvidersAndRouer";
 import { uiInitialState } from "../../redux/features/uiSlice/uiSlice";
 import RecipeList from "./RecipeList";
 
@@ -9,7 +9,7 @@ describe("Given a RecipeList conponent", () => {
     test("Then it it should show a list of 8 recipes cards", () => {
       const expectedHedingsLevel = 2;
 
-      renderWithProviders(<RecipeList />, {
+      renderWithProvidersAndRouter(<RecipeList />, {
         preloadedState: {
           ui: uiInitialState,
           recipes: { recipes: eightRecipes },

@@ -27,6 +27,7 @@ const RecipeIngredientsInput = ({
 
     setIngredientData({ ...ingredientData, [inputId]: value });
   };
+
   const addIngredient = () => {
     if (!ingredientData.name || !ingredientData.quantity) {
       return;

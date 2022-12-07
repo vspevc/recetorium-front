@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { loadRecipesActionCreator } from "../../redux/features/recipesSlice/recipesSlice";
 import { RecipeStructure } from "../../redux/features/recipesSlice/types";
 import { PaginationStructure } from "../../redux/features/uiSlice/types";
@@ -13,10 +14,12 @@ import {
 import { useAppDispatch } from "../../redux/hooks";
 import axiosErrorMessage from "../../utils/api/axiosErrorMessage";
 import recetoriumApi from "../../utils/api/recetoriumApi";
+import paths from "../../utils/paths/paths";
 import RecipeFormData from "./types";
 
 const useRecipes = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const loadRecipes = useCallback(
     async (page?: string) => {
@@ -51,6 +54,8 @@ const useRecipes = () => {
 
         dispatch(loadRecipesActionCreator(recipes));
         dispatch(loadPaginationActionCreator(paginationData));
+        // eslint-disable-next-line no-restricted-globals
+        scrollTo(0, 0);
         dispatch(hideLoadingActionCreator());
       } catch (error: unknown) {
         dispatch(
@@ -112,6 +117,9 @@ const useRecipes = () => {
             content: "Tu receta ya está disponible.",
           })
         );
+        navigate(paths.root);
+        // eslint-disable-next-line no-restricted-globals
+        scrollTo(0, 0);
         dispatch(hideLoadingActionCreator());
       } catch (error: unknown) {
         dispatch(
@@ -123,7 +131,7 @@ const useRecipes = () => {
         dispatch(hideLoadingActionCreator());
       }
     },
-    [dispatch]
+    [dispatch, navigate]
   );
 
   const deleteRecipe = async (recipeId: string) => {
