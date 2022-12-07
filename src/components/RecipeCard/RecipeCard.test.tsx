@@ -1,11 +1,25 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../../mocks/renderWithProviders";
 import { RecipeStructure } from "../../redux/features/recipesSlice/types";
 import RecipeCard from "./RecipeCard";
 
+const mockDeleteRecipe = jest.fn();
+const mockLoadRecipes = jest.fn();
+jest.mock("../../hooks/useRecipes/useRecipes", () => {
+  return () => ({
+    deleteRecipe: mockDeleteRecipe,
+    loadRecipes: mockLoadRecipes,
+  });
+});
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
 describe("Given a RecipeCard component", () => {
   const recipe: RecipeStructure = {
-    id: "",
+    id: "638fa48db57ddca2b40bb483",
     name: "Yummy salad",
     urlSlug: "/",
     author: "",
@@ -42,6 +56,21 @@ describe("Given a RecipeCard component", () => {
 
       expect(expectedcena).toBeInTheDocument();
       expect(expectedpostre).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's rendered with a recipe and user clicks on delete button", () => {
+    test("Then it should call delete recipe with recipe id and call load recipes", async () => {
+      const deleteButtonLabel = /eliminar receta/i;
+      renderWithProviders(<RecipeCard recipe={recipe} />);
+
+      const deleteButton = screen.queryByLabelText(
+        deleteButtonLabel
+      ) as HTMLButtonElement;
+      await userEvent.click(deleteButton);
+
+      expect(mockDeleteRecipe).toHaveBeenCalledWith(recipe.id);
+      expect(mockLoadRecipes).toHaveBeenCalled();
     });
   });
 });
