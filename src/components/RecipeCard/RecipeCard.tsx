@@ -1,11 +1,23 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useRecipes from "../../hooks/useRecipes/useRecipes";
+import { useAppSelector } from "../../redux/hooks";
+import Button from "../Button/Button";
 import RecipeTypeTag from "../RecipeTypeTag/RecipeTypeTag";
 import RecipeCardStyled from "./RecipeCardStyled";
 import RecipeCardProps from "./types";
 
 const RecipeCard = ({ recipe }: RecipeCardProps): JSX.Element => {
-  const { name, types, elaborationTime, image } = recipe;
+  const {
+    pagination: { currentPage },
+  } = useAppSelector(({ ui }) => ui);
+  const { deleteRecipe, loadRecipes } = useRecipes();
+  const { id, name, types, elaborationTime, image } = recipe;
+
+  const deleteAndReload = async () => {
+    await deleteRecipe(id);
+    await loadRecipes(`/recipes/search?page=${currentPage}`);
+  };
 
   return (
     <RecipeCardStyled>
@@ -18,6 +30,14 @@ const RecipeCard = ({ recipe }: RecipeCardProps): JSX.Element => {
           height="308"
           width="432"
         />
+        <Button
+          className="recipe-card__delete"
+          ariaLabel="Eliminar receta"
+          action={deleteAndReload}
+          options={{ variant: "round" }}
+        >
+          <FontAwesomeIcon className="delete" icon={solid("trash-can")} />
+        </Button>
       </header>
       <div className="recipe-card__info">
         <div className="recipe-card__tags">

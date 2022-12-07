@@ -9,6 +9,7 @@ const RecipeCardStyled = styled.article`
   overflow: hidden;
 
   .recipe-card__header {
+    position: relative;
     display: flex;
     flex-direction: column;
   }
@@ -18,6 +19,12 @@ const RecipeCardStyled = styled.article`
     height: 100px;
     object-fit: cover;
     object-position: center;
+  }
+
+  .recipe-card__delete {
+    position: absolute;
+    top: 50px;
+    right: 8px;
   }
 
   .recipe-card__title {
