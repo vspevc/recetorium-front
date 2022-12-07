@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { renderWithProviders } from "../../mocks/renderWithProviders";
+import { renderWithProvidersAndRouter } from "../../mocks/renderWithProvidersAndRouer";
 import CreateRecipe from "./CreateRecipe";
 
 describe("Given a CreateRecipe page", () => {
@@ -8,7 +8,7 @@ describe("Given a CreateRecipe page", () => {
       const expectedHeadingText = /nueva receta/i;
       const expectedHeadingLevel = 1;
 
-      renderWithProviders(<CreateRecipe />);
+      renderWithProvidersAndRouter(<CreateRecipe />);
       const expectedHeading = screen.queryByRole("heading", {
         name: expectedHeadingText,
         level: expectedHeadingLevel,
