@@ -20,7 +20,11 @@ afterEach(() => {
 
 describe("Given a useRecipes custom hook", () => {
   const dispatchSpy = jest.spyOn(store, "dispatch");
-  const { result } = renderHook(() => useRecipes(), {
+  const {
+    result: {
+      current: { loadRecipes, createRecipe, deleteRecipe },
+    },
+  } = renderHook(() => useRecipes(), {
     wrapper: ContextWrapper,
   });
 
@@ -28,7 +32,7 @@ describe("Given a useRecipes custom hook", () => {
     test("Then it should call dispatch with loadRecipes action with a list of recipes", async () => {
       const loadRecipesAction = loadRecipesActionCreator(eightRecipes);
 
-      await result.current.loadRecipes();
+      await loadRecipes();
 
       expect(dispatchSpy).toHaveBeenCalledWith(loadRecipesAction);
     });
@@ -43,7 +47,7 @@ describe("Given a useRecipes custom hook", () => {
       const showModalAction = showErrorModalActionCreator(modalData);
       const unknownPage = "recipes/search?page=900";
 
-      await result.current.loadRecipes(unknownPage);
+      await loadRecipes(unknownPage);
 
       expect(dispatchSpy).toHaveBeenCalledWith(showModalAction);
     });
@@ -80,7 +84,7 @@ describe("Given a useRecipes custom hook", () => {
       };
       const showModalAction = showSuccessModalActionCreator(modalData);
 
-      await result.current.createRecipe(recipeFormData);
+      await createRecipe(recipeFormData);
 
       expect(dispatchSpy).toHaveBeenCalledWith(showModalAction);
     });
@@ -94,7 +98,7 @@ describe("Given a useRecipes custom hook", () => {
       };
       const showModalAction = showSuccessModalActionCreator(modalData);
 
-      await result.current.createRecipe(recipeFormData);
+      await createRecipe(recipeFormData);
 
       expect(dispatchSpy).toHaveBeenCalledWith(showModalAction);
     });
@@ -109,7 +113,7 @@ describe("Given a useRecipes custom hook", () => {
       };
       const showModalAction = showErrorModalActionCreator(modalData);
 
-      await result.current.createRecipe(recipeFormData);
+      await createRecipe(recipeFormData);
 
       expect(dispatchSpy).toHaveBeenCalledWith(showModalAction);
     });
@@ -123,7 +127,52 @@ describe("Given a useRecipes custom hook", () => {
       };
       const showModalAction = showErrorModalActionCreator(modalData);
 
-      await result.current.createRecipe(recipeFormData);
+      await createRecipe(recipeFormData);
+
+      expect(dispatchSpy).toHaveBeenCalledWith(showModalAction);
+    });
+  });
+
+  describe("When it's deleteRecipe is invoked with valid id '638fa48db57ddca2b40bb483'", () => {
+    test("Then it should call dispatch with show modal action delete recipe success", async () => {
+      const recipeId = "638fa48db57ddca2b40bb483";
+      const modalData: FeedbackModalPayload = {
+        title: "Se ha eliminado la receta",
+        content: "La receta ha sido eliminada de forma permanente.",
+      };
+      const showModalAction = showSuccessModalActionCreator(modalData);
+
+      await deleteRecipe(recipeId);
+
+      expect(dispatchSpy).toHaveBeenCalledWith(showModalAction);
+    });
+  });
+
+  describe("When it's deleteRecipe is invoked with invalid id '638fa48db57ddca2b40bb482'", () => {
+    test("Then it should call dispatch with show modal action delete error", async () => {
+      const recipeId = "638fa48db57ddca2b40bb482";
+      const modalData: FeedbackModalPayload = {
+        title: "Error al intentar eliminar la receta",
+        content: "Ha habido un problema vuelva a intentarlo en unos minutos.",
+      };
+      const showModalAction = showErrorModalActionCreator(modalData);
+
+      await deleteRecipe(recipeId);
+
+      expect(dispatchSpy).toHaveBeenCalledWith(showModalAction);
+    });
+  });
+
+  describe("When it's deleteRecipe is invoked with valid id but have a network error", () => {
+    test("Then it should call dispatch with show modal action delete network error", async () => {
+      const recipeId = "638fa48db57ddca2b40bb483";
+      const modalData: FeedbackModalPayload = {
+        title: "Error al intentar eliminar la receta",
+        content: "Error de conexión, intentelo en unos minutos.",
+      };
+      const showModalAction = showErrorModalActionCreator(modalData);
+
+      await deleteRecipe(recipeId);
 
       expect(dispatchSpy).toHaveBeenCalledWith(showModalAction);
     });

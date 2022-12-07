@@ -44,7 +44,27 @@ export const handlers = [
       ctx.json({ error: '"name" is not allowed to be empty' })
     )
   ),
-  rest.post(`${apiUrl}recipes/create`, (req, res, ctx) =>
+  rest.post(`${apiUrl}recipes/create`, (req, res) =>
+    res.networkError("Network Error")
+  ),
+
+  rest.delete(`${apiUrl}recipes/delete/:recipeId`, (req, res, ctx) =>
+    res.once(
+      ctx.status(200),
+      ctx.json({
+        message: 'Recipe "Tomato soup" has been deleted successfully',
+      })
+    )
+  ),
+  rest.delete(`${apiUrl}recipes/delete/:recipeId`, (req, res, ctx) =>
+    res.once(
+      ctx.status(500),
+      ctx.json({
+        error: "Internal server error",
+      })
+    )
+  ),
+  rest.delete(`${apiUrl}recipes/delete/:recipeId`, (req, res) =>
     res.networkError("Network Error")
   ),
 ];
