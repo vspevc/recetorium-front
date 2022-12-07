@@ -69,7 +69,7 @@ const RecipeIngredientsInput = ({
       <div className="ingredients-input">
         {recipeIngredients.map((ingredient, index) => (
           <RecipeInputCard
-            key={index}
+            key={`${index}^${ingredient.name}`}
             prefix={ingredient.quantity}
             body={ingredient.name}
             index={index}

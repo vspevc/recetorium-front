@@ -41,8 +41,8 @@ const RecipeCard = ({ recipe }: RecipeCardProps): JSX.Element => {
       </header>
       <div className="recipe-card__info">
         <div className="recipe-card__tags">
-          {types.map((type, index) => (
-            <RecipeTypeTag key={index} name={type.name} />
+          {types.map((type) => (
+            <RecipeTypeTag key={type.name} name={type.name} />
           ))}
         </div>
         <div className="recipe-card__time">
