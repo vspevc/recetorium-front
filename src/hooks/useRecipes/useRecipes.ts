@@ -117,10 +117,11 @@ const useRecipes = () => {
             content: "Tu receta ya está disponible.",
           })
         );
-        navigate(paths.root);
-        // eslint-disable-next-line no-restricted-globals
-        scrollTo(0, 0);
+
         dispatch(hideLoadingActionCreator());
+
+        navigate(paths.root);
+        window.scrollTo(0, 0);
       } catch (error: unknown) {
         dispatch(
           showErrorModalActionCreator({
