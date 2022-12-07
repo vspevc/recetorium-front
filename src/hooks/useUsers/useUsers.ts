@@ -9,9 +9,12 @@ import {
 } from "../../redux/features/uiSlice/uiSlice";
 import recetoriumApi from "../../utils/api/recetoriumApi";
 import apiMessageToSpanish from "../../utils/api/translations/apiMessageToSpanish";
+import { useNavigate } from "react-router-dom";
+import paths from "../../utils/paths/paths";
 
 const useUsers = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const registerUser = async (registerUserData: RegisterUserData) => {
     dispatch(showLoadingActionCreator());
@@ -26,6 +29,8 @@ const useUsers = () => {
             "Enhorabuena ahora puedes acceder a todo el contenido entrando con tu nuevo usuario.",
         })
       );
+
+      navigate(paths.root);
       dispatch(hideLoadingActionCreator());
     } catch (error: unknown) {
       const axiosError = error as AxiosError;
