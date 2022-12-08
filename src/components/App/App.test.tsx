@@ -1,7 +1,15 @@
 import { screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
+import TestRenderer from "react-test-renderer";
+import { ThemeProvider } from "styled-components";
 import { renderWithProvidersAndRouter } from "../../mocks/renderWithProvidersAndRouer";
 import { ModalStructure } from "../../redux/features/uiSlice/types";
 import { uiInitialState } from "../../redux/features/uiSlice/uiSlice";
+import { store } from "../../redux/store";
+import GlobalStyle from "../../styles/GlobalStyle";
+import theme from "../../styles/theme";
+import paths from "../../utils/paths/paths";
 import App from "./App";
 
 describe("Given an App component", () => {
@@ -44,6 +52,23 @@ describe("Given an App component", () => {
       const expectedLoading = screen.queryByLabelText(expectedLabel);
 
       expect(expectedLoading).toBeInTheDocument();
+    });
+  });
+
+  describe("When is rendered with path '/usuario/registro'", () => {
+    test("Then it should show the Loading before RegisterPage", () => {
+      const expectedApp = TestRenderer.create(
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <MemoryRouter initialEntries={[paths.registerUser]}>
+              <App />
+            </MemoryRouter>
+          </ThemeProvider>
+        </Provider>
+      );
+
+      expect(expectedApp).toMatchSnapshot();
     });
   });
 });
